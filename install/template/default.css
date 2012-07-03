@@ -1,0 +1,454 @@
+body {
+	margin-top: 50px;
+	padding: 0;
+	background: #0A1420;
+	font-family: "Trebuchet MS", Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+
+code {
+   /* background: #cccccc;
+    padding: 1px;
+    color: #111111;*/
+    direction: ltr;
+    background: #003A75;
+    padding: 1px;
+    color: #fff;
+    display: inline-block;
+}
+b{
+    color:  #FF8000; 
+}
+dfn {
+    cursor: help;
+    border-bottom: 1px dotted green;
+    color: #7DFF7D;
+}
+
+h1, h2, h3 {
+	margin-top: 0;
+	color: #FFFFFF;
+}
+
+h1 {
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1em;
+}
+
+ul {
+}
+
+a {
+	text-decoration: none;
+	color: #B0B0FF;
+}
+
+a:hover {
+	border-bottom: none;
+}
+
+a img {
+	border: none;
+}
+
+img.left {
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+img.right {
+	float: right;
+	margin: 0 0 0 20px;
+}
+
+input {
+    margin: 2px;
+}
+
+#header {
+	width: 940px;
+	height: 150px;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+/* Header */
+
+#logo {
+	width: 940px;
+	height: 80px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+#logo h1, #logo p {
+	margin: 0;
+	color: #FFFFFF;
+}
+
+#logo span {
+}
+
+#logo h1 {
+    text-align:center;
+	padding: 25px 0 0 0;
+	letter-spacing: -1px;
+	font-weight: normal;
+	font-size: 3em;
+}
+
+#logo p {
+	padding: 47px 0 0 3px;
+	font-size: 10px;
+	color: #CCCCCC;
+}
+
+#logo a {
+	border: none;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+/* Menu */
+
+#menu {
+    text-align: center;
+    color: #205080;
+	width: 940px;
+	margin: 0 auto;
+	padding-top: 20px;
+	height: 50px;
+	background: url(images/img01.gif)  no-repeat left top;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	height: 34px;
+	margin: 0;
+	padding: 16px 30px 0 30px;
+	background: url(images/img14.gif) no-repeat right 7px;
+	text-decoration: none;
+	text-transform: capitalize;
+	font-size: 13px;
+	font-weight: bold;
+	color: #04283B;
+}
+
+#menu a:hover {
+	color: #04283B;
+}
+
+#menu .current_page_item a {
+	color: #04283B;
+}
+
+/* Wrapper */
+
+#wrapper {
+}
+
+/* Page */
+
+#page {
+	width: 940px;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+#page-bg {
+}
+
+/* Latest Post */
+
+#latest-post {
+	padding: 20px;
+	border: 1px solid #E7E7E7;
+}
+
+/* Content */
+
+#content {
+	float: left;
+	width: 690px;
+	background: url(images/img12.gif) repeat-y left top;
+}
+
+#content-bgtop {
+	background: url(images/img11.gif) no-repeat left top;
+}
+
+#content-bgbtm {
+	padding: 20px 10px;
+	background: url(images/img13.gif) no-repeat left bottom;
+}
+
+.post {
+    margin-left: 20px;
+	padding-bottom: 15px;
+	background: url(images/img15.gif) repeat-x left bottom;
+
+}
+
+.post h1 {
+	font-weight: normal;
+}
+
+.title {
+	margin: 0;
+	padding: 10px 20px 4px 20px;
+	font-weight: normal;
+}
+
+.title a {
+	border-bottom: none;
+	color: #FFFFFF;
+}
+
+.title a:hover {
+	border-bottom: 1px dotted #000000;
+}
+
+.byline {
+    font-size: 11px;
+	margin: -5px 20px 20px 20px;
+}
+
+.tag {
+	padding: 0 15px;
+}
+
+.entry {
+	padding: 0 20px;
+}
+
+.links {
+	padding: 4px 0px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.links a {
+	border: none;
+}
+
+.links a:hover {
+}
+
+/* Sidebars */
+
+#sidebar1 {
+	float: left;
+	background: url(images/img04.gif) repeat-y left top;
+	color: #04283B;
+}
+
+#sidebar1-bgtop {
+	background: url(images/img03.gif) no-repeat left top;
+}
+
+#sidebar1-bgbtm {
+	padding-top: 10px;
+    padding: 10px;
+	background: url(images/img05.gif) no-repeat left bottom;
+}
+
+#sidebar1 h2 {
+	height: 30px;
+	margin: 0px 0px 0px 0px;
+	padding: 25px 0px 0px 15px;
+	background: url(images/img06.gif) no-repeat left top;
+	font-size: 13px;
+	font-weight: bold;
+	color: #04283B;
+}
+
+#sidebar1 a {
+	color: #04283B;
+}
+
+#sidebar2 {
+	float: right;
+	background: url(images/img08.gif) repeat-y left top;
+}
+
+#sidebar2-bgtop {
+	background: url(images/img07.gif) no-repeat left top;
+}
+
+#sidebar2-bgbtm {
+	padding-top: 10px;
+	background: url(images/img09.gif) no-repeat left bottom;
+}
+
+#sidebar2 h2 {
+	height: 30px;
+	margin: 0px 0px 0px 0px;
+	padding: 25px 0px 0px 15px;
+	background: url(images/img10.gif) no-repeat left top;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#sidebar2 a {
+	color: #FFFFFF;
+}
+
+.sidebar {
+	float: left;
+	width: 250px;
+	font-size: 14px;
+}
+
+.sidebar ul {
+	margin: 10px;
+	padding: 10px;
+}
+
+.sidebar li {
+    
+	padding: 0 0 10px 0;
+}
+
+
+/* Search */
+
+#searchform {
+	margin: 0;
+	padding: 0 0 0 0;
+}
+
+#searchform br {
+	display: none;
+}
+
+#searchform h2 {
+}
+
+#s {
+	margin: 10px 0px 0 15px;
+	padding: 2px 2px;
+	width: 150px;
+	height: 18px;
+	border: 1px solid #FFFFFF;
+	background: #FFFFFF;
+	font-size: 10px;
+	color: #000000;
+}
+
+#x {
+	margin: 0;
+	padding: 2px 5px;
+	height: 25px;
+	background: #CA8186;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #CCCCCC;
+}
+/* Calendar */
+
+#calendar_wrap {
+	padding: 0 15px;
+	text-align: center;
+}
+
+#calendar_wrap table {
+	width: 100%;
+}
+
+#calendar_wrap th {
+}
+
+#calendar_wrap td {
+}
+
+#calendar_wrap tfoot td {
+	border: none;
+}
+
+#calendar_wrap tfoot td#prev {
+	text-align: left;
+	font-weight: bold;
+	border: none;
+}
+
+#calendar_wrap tfoot td#prev a {
+	border: none;
+}
+
+#calendar_wrap tfoot td#next {
+	text-align: right;
+	font-weight: bold;
+	border: none;
+}
+
+#calendar_wrap tfoot td#next a {
+	border: none;
+}
+
+/* Footer */
+
+#footer {
+	width: 960px;
+	height: 70px;
+	margin: 0 auto;
+	padding: 10px 0px 0px 0px;
+	color: #FFFFFF;
+}
+
+#footer p {
+	margin: 0;
+	padding: 25px 20px 0 20px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: smaller;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#footer a {
+	color: #FFFFFF;
+}
+
+#footer .link {
+	float: right;
+}
+
+#footer .copyright {
+	float: left;
+}
+
+div.error {
+    width: 95%;
+    background: #840000;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+div.succ {
+    width: 95%;
+    background: green;
+    padding: 5px;
+    border: 1px solid #00FF40;
+}

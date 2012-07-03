@@ -1,0 +1,14 @@
+hr#readmore_handler{ border: orange solid 1px; }
+* {
+font-size: 13px;
+font-family: Tahoma;
+}
+
+code {
+	border:1px solid gray;
+	background: #f7f7f7;
+	font-family: monospace;
+	font-size: 12px;
+	display:block;
+	padding:3px;
+}

@@ -1,0 +1,102 @@
+/*
+Default Template for Arta
+*/
+
+body {
+	direction:rtl;
+}
+
+/* Header */
+
+#header {
+	padding-left: 0px;
+	padding-right: 50px;
+}
+
+#header span.header_text{
+	float:left;
+}
+
+/* Logo */
+
+#logo {
+	float: right;
+}
+
+#logo h1 {
+	float: right;
+}
+
+#logo p {
+	float: right;
+	padding: 26px 10px 0 0px;
+} 
+
+/* Menu */
+#topmenu{
+	padding-right:40px;
+}
+
+#topmenu > span.custom1{
+	float:left;
+}
+
+#topmenu > span.adminmenu li {
+	float: right;
+	border-right: 1px solid #4E9CE9;
+	border-left:none;
+}
+
+#topmenu > span.adminmenu li li{
+	text-align: right;
+}
+
+#topmenu > span.adminmenu .current_page_item a {
+	padding-right: 0;
+}
+
+/* Content */
+
+#page-bgbtm .custom3{
+	float:left;
+}
+
+/* Sidebar */
+
+td.sidebar li {
+	margin-left: 0px;
+	border-left: 0px;
+	margin-right: 5px;
+	border-right: 1px solid #E2E2E2;
+}
+
+td.sidebar li li {
+	margin: 0px 0px 0 15px;
+	border-right: none;
+}
+
+td.sidebar h3 {
+	padding-left: 0px;
+	padding-right: 10px;
+}
+
+/* Extension Specific */
+
+ul.tabs li a{
+	float:right;
+}
+
+
+div.grid > span {
+	float:right;
+}
+
+.admintable{
+	margin-top:5px;
+	margin-right:3px;
+}
+
+.label {
+	text-align:right;
+}
+

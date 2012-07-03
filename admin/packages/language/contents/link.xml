@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<translation>
+	<field type="text" name="title" title="TITLE" typedata="$options['params']=array('maxlength'=>255);"/>
+</translation>

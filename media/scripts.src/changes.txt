@@ -1,0 +1,10 @@
+added ... button to advimage & media in tinymce
+Added imageHandle to livepipe/window.js for image support when linking PHP Files
+Added from 328 to 347 in livepipe/window.js. more description on 328.
+Tweaked window positioning by pointer in livepipe/window.js
+1680-1685 in prototype.js
+36-47 in codepress.js for fixing submit bug.
+61-66 36-42 52-56 in fisheye.js
+codepress.css font-size set to 12px and line-height set to 15px.
+created codetag plugin for tiny_mce.
+Added alert to inform user this is not needed. Similar exists is arta.js

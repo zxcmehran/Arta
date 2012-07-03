@@ -1,0 +1,31 @@
+# You can comment this line if you encounter problems with server configuration.
+# It's required by Rewrite but changing it may be disallowed by your administrator.  
+Options +FollowSymLinks
+
+Options -Indexes
+
+<IfModule rewrite_module>
+	RewriteEngine On
+	
+	#
+	#  /abc/def/.htaccess -- per-dir config file for directory /abc/def
+	#
+	#  Remember: /abc/def is the physical path of /xyz, i.e., the server
+	#            has a 'Alias /xyz /abc/def' directive e.g.
+	#
+	#  let the server know that we were reached via /xyz and not
+	#  via the physical path prefix /abc/def
+	#  in this case we should use : 
+	#  RewriteBase   /xyz
+	#
+	#  If you are accessing Arta via alias and not via physical root then 
+	#  you can uncomment following line and add your alias instead of /arta
+	#  to make rewriting work fine.
+	
+	#RewriteBase /arta
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_URI} (/|\.php|\.html|\.htm|\.xml|\.pdf|\.raw|\..{0,8}|/[^.]*)$  [NC]
+	RewriteRule (.*) index.php [L]
+</IfModule>

@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<translation>
+	<field type="text" name="title" title="TITLE" typedata="$options['params']=array('maxlength'=>255);"/>
+	<field type="custom" name="content" title="CONTENT" typedata="if(substr($defaultvalue, 0,5)=='MENU:'){echo trans('MENU MODULES HAVE NOT CONTENTS');}else{echo ArtaTagsHtml::addEditor($name, $value);}"/>
+</translation>

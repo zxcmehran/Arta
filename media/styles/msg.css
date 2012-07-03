@@ -1,0 +1,32 @@
+div.message.error {
+border-color: #CF1212;
+background: url(../images/notice-error.png) no-repeat /*#ffbbbb*/ #FCD8D8 7px 3px;
+color: red;
+text-shadow: 0 0 16px red;
+}
+
+div.message.warning {
+border-color: #F3A854;
+background: url(../images/notice-warning.png) no-repeat /*#FFC898*/ #FDECD9 7px 3px;
+color: #FF7800;
+text-shadow: 0 0 16px #FF7800;
+}
+
+div.message.tip {
+border-color: #7594D2;
+background: url(../images/notice-tip.png) no-repeat /*#C0D2E8*/ #E9EEF8 7px 3px;
+color: #0071BC;
+text-shadow: 0 0 16px #0071BC;
+}
+
+div.message{
+	max-width:90%;
+	margin:3px;
+	vertical-align: middle;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 50px;
+	padding-right: 50px;
+	border: 1px solid;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+}

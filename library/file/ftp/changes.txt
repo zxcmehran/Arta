@@ -1,0 +1,13 @@
+line 80 @ ftp.php
+line 92 @ ftp.php
+line 396 @ ftp.php
+line 418 @ ftp.php
+
+changed class name @ ftp.php
+changed end of file for correct inclusion @ ftp.php
+
+line 68 @ ftp_pure.php
+changed class name  @ ftp_pure.php
+
+line 78 @ ftp_sockets.php
+changed class name  @ ftp_sockets.php

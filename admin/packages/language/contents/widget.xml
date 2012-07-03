@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<translation>
+	<field type="text" name="title" title="TITLE" typedata="$options['params']=array('maxlength'=>255);"/>
+	<field title="CONTENT" type="custom" name="content" typedata="echo ArtaTagsHtml::addEditor($name, $value);"/>
+</translation>

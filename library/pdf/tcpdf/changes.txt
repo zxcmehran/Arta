@@ -1,0 +1,3 @@
+changed line 1541
+added some includes on tcpdf.php file beginning
+Changed language eng.php and configuration tcpdf_config.php

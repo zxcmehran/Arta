@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<translation>
+	<field type="text" name="title" title="TITLE" typedata="$options['params']=array('maxlength'=>255);"/>
+	<field title="INTROCONTENT" type="custom" name="introcontent" typedata="echo ArtaTagsHtml::addEditor($name, $value,array('height'=>'200px;'));"/>
+	<field title="MORECONTENT" type="custom" name="morecontent" typedata="echo ArtaTagsHtml::addEditor($name, $value,array('height'=>'200px;'));"/>
+	<field title="TAGS" type="custom" name="tags" typedata="$tg=explode(',',$defaultvalue);$tgv=explode(',',$value);foreach($tg as $k=>$tag){if(trim($tag)!==''){echo htmlspecialchars($tag).': &lt;input name=&quot;'.$name.'[]&quot; value=&quot;'.@$tgv[$k].'&quot;/&gt;&lt;br/&gt;';}}"/>
+</translation>

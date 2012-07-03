@@ -1,0 +1,64 @@
+/*
+Default Template for Arta
+*/
+
+body {
+	direction:rtl;
+}
+
+/* Haaders */
+
+#header-location {
+	float:left;
+	text-align: left;
+}
+
+#logo {
+	float:right;
+}
+
+/* Menu */
+
+
+#menu li {
+	float: right;
+}
+
+/* Sidebars */
+
+.sidebar ul {
+	margin: 0;
+	margin-right: 20px;
+	padding: 0;
+
+}
+
+.sidebar ul ul {
+	margin: 0;
+	margin-right: 10px;
+	padding: 0;
+}
+
+ul.tabs li a{
+	float: right;
+}
+
+ul.tabs li a:hover{
+	float: right;
+}
+
+/* Search */
+div #search {
+	float:left;
+}
+
+
+span.pathway_separator{
+	background: url(../images/arrow_rtl.gif);
+}
+
+/* Other */
+
+table.content_table thead th {
+	text-align:right;
+}

@@ -1,0 +1,87 @@
+/*Windows in Arta*/
+
+#control_overlay {
+	background-color:#000;
+}
+.window{
+	height: 525px;
+	width:900px;
+	background:#ffffff;
+	padding:2px 2px 2px 2px;
+	border: 2px solid #FFC891;
+	 -moz-border-radius: 5px;
+	 border-radius: 5px;
+}
+
+.window .window_header{
+	background:#FFC891;
+	padding:2px 2px 2px 2px;
+	border: 1px solid #FFC891;
+	width:99%;
+	height:20px;
+	margin: -2px;
+}
+
+.window .window_header .window_title{
+	color: white;
+	padding-right: 20px;
+}
+
+.window .window_header .window_close{
+	 -moz-border-radius: 2px;
+	 border-radius: 2px;
+	display:block;
+	position:relative;
+	text-align:center;
+	float:right;
+	top:-16px;
+	height:16px;
+	width:16px;
+	background:red;
+	cursor:pointer;			
+}
+
+.window .window_contents{
+	height: 495px;
+	width:	100%;
+	border: 0px;
+	overflow:auto;
+}
+
+.window .window_contents iframe{
+	height: 490px;
+	width:	100%;
+	border: 0px;
+	overflow:auto;
+}
+
+
+.modal{
+	border-color: black;
+}
+
+.modal .window_header{
+	background:black;
+	color:white;
+	text-align:center;
+	font-family:Verdana;
+	font-size:14px;
+	padding:2px 2px 2px 2px;
+	width:99%;
+}
+
+.imgwindow .window_contents{
+	height: auto;
+	width:	auto;
+	border: 0px;
+	overflow:auto;
+}
+
+
+.imgwindow{
+	height: auto;
+	width:	auto;
+}
+
+
+/*end Windows*/

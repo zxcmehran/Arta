@@ -1,0 +1,11 @@
+line 182 @ unzip.php
+line 214 @ unzip.php
+line 240 @ unzip.php 
+line 252 @ unzip.php
+
+two last fixes are for making unzipAll() return something.
+
+
+changed zip and unzip class name and constructor to be defined by __construct();
+changed open tags from <? to <?php.
+added ?> to end of files

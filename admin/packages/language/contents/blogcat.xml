@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<translation>
+	<field type="text" name="title" title="CATEGORY TITLE" typedata="$options['params']=array('maxlength'=>255);"/>
+	<field title="CATEGORY DESC" type="custom" name="desc" typedata="echo ArtaTagsHtml::addEditor($name, $value,array('height'=>'200px;'));"/>
+</translation>

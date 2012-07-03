@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<translation>
+	<field type="text" name="title" title="TITLE" typedata="$options['params']=array('maxlength'=>255);"/>
+	<field title="DESCRIPTION" type="textbox" name="desc"/>
+	<field title="CONTENT" type="custom" name="content" typedata="if($default->is_dynamic){echo trans('PAGE TYPE').': '.trans('DYNAMIC');}else{echo ArtaTagsHtml::addEditor('content',$value);}"/>
+	<field title="TAGS" type="custom" name="tags" typedata="$tg=explode(',',$defaultvalue);$tgv=explode(',',$value);foreach($tg as $k=>$tag){if(trim($tag)!==''){echo htmlspecialchars($tag).': &lt;input name=&quot;'.$name.'[]&quot; value=&quot;'.@$tgv[$k].'&quot;/&gt;&lt;br/&gt;';}}"/>
+</translation>

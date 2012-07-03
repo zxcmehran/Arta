@@ -1,0 +1,111 @@
+/*
+Default Template for Arta
+*/
+
+body{
+	background: url(../../images/blue/img01.gif) repeat-x left top;
+}
+
+
+input[type="button"] , input[type="submit"], input[type="reset"], button {
+	background: #74A2FF;
+	border-color:#3075FF;
+}
+
+input[type="button"]:hover , input[type="submit"]:hover, input[type="reset"]:hover, button:hover {
+	background: #3075FF;
+	border-color:#3075FF;
+}
+
+#header-location a {
+	color: #CCE6FF;
+}
+
+
+/* Menu */
+
+
+#menu-wrapper {
+	background: url(../../images/blue/img02.gif) repeat-x left top;
+}
+
+#menu a:hover {
+	background: #A4C8FF;
+
+}
+
+
+div.module h3.moduletitle {
+	background: url(../../images/blue/img05.gif) repeat-x;
+}
+
+table.content_table thead {
+	background: #93C4FF url(../../images/blue/img06.gif) repeat-x;
+}
+
+table.content_table tr.row0 td{
+	background:#ECF5FF;
+}
+
+table.content_table tr.row1 td{
+	background:#D6EBFF;
+}
+
+
+/** Extension-specific */
+
+.readmore {
+	background: #74A2FF;
+	border-color:#3075FF;
+}
+
+.readmore:hover {
+	background: #3075FF;
+	border-color:#3075FF;
+}
+
+ul.tabs li.active a, ul.tabs li.active a:link, ul.tabs li.active a:visited, ul.tabs li a:hover{
+  background: url(../../images/blue/bg-tab.gif) repeat-x 0 50%;
+}
+
+table.avatarTable{
+	background:#A9CBFD;
+	color:#004FA0;
+}
+
+table.avatarTable tr td.avatarTable_ug{
+	background: #2864A0;
+}
+
+table.avatarTable:hover{
+	background: #64ACFD;
+}
+
+/*Windows*/
+
+#control_overlay {
+	background-color:#000;
+}
+.window{
+	border-color:#91ABFF;
+}
+
+.window .window_header{
+	background:#6A8AE7;
+	border-color:#6A8AE7;
+}
+
+/*end Windows*/
+
+div#widgets_container div.custom_widget td.widget_title{
+	background: #93C4FF url(../../images/blue/img06.gif) repeat-x 3px;
+}
+
+div.comment table td .commentTitle{
+	background: #777D97 url(../../images/blue/img07.gif);
+}
+
+
+fieldset.profile.general {
+	background: url(../../images/blue/bg-profile.gif) no-repeat center;
+}

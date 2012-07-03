@@ -1,0 +1,17 @@
+/*Tooltips in Arta*/
+.tooltip, .tooltip_warning{
+	background:#FFFBEC;
+	padding:4px 4px 4px 4px;
+	border: 1px solid #FFDE5B;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	color: #333333;
+	font-size:90%;
+}
+
+.tooltip_warning{
+	background: #950000;
+	color:white;
+	border-color: red;
+}
+/*end Tooltips*/

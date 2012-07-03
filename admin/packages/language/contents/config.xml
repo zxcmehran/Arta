@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<translation>
+	<field type="custom" name="value" title="CONFIG_PARAM">
+		<![CDATA[ 
+		echo '<b>'.$default->title.'</b><br/>';
+		if($default->id==6){
+			$value = $value == null ? $defaultvalue : $value;
+			echo ArtaTagsHtml::PreFormItem($name,$value,'radio','$options["options"]=array("gregorian"=>trans("CAL_TYPE_GREGORIAN"),"jalali"=>trans("CAL_TYPE_JALALI"));');
+		}else{
+			echo ArtaTagsHtml::PreFormItem($name,$value,'textbox','$options["params"]["style"]="height:50px;width:300px;";');
+		}
+		]]>
+	</field>
+</translation>

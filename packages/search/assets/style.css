@@ -1,0 +1,26 @@
+.searchSeparator {
+	border: 0px;
+	border-top: 1px dashed #cccccc;	
+}
+
+.searchTitle{
+	font-size:150%;
+}
+
+.searchCat{
+	font-size:75%;
+	color:#999999;
+}
+
+.searchLink{
+	color: #00A800;
+}
+
+.searchText {
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.highlight {
+	background: #FFFFC4;
+}

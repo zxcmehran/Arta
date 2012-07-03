@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title><TMPLTAG:TITLE></title>
+<meta name="robots" content="noindex, nofollow" />
+<link href="template/default.css" rel="stylesheet" type="text/css" media="screen" />
+<style>
+html, body{
+	direction: <TMPLTAG:DIR>;
+}
+</style>
+</head>
+<body>
+<div id="header">
+	<div id="logo">
+		<h1><TMPLTAG:HEADER></h1>
+	</div>
+	<div id="menu">
+    <TMPLTAG:STEPS>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="page">
+		<div id="page-bg">
+			<div id="sidebar1" class="sidebar">
+				<div id="sidebar1-bgtop">
+				<div id="sidebar1-bgbtm">
+				<TMPLTAG:SIDEBAR>
+				</div>
+				</div>
+			</div>
+			<div id="content">
+				<div id="content-bgtop">
+				<div id="content-bgbtm">
+				<div class="post">
+					<h2 class="title"><a href="#"><TMPLTAG:SMALLTITLE></a></h2>
+					<p class="byline"><TMPLTAG:STEPINFO></p>
+					<div class="entry">
+                        <--SEPARATOR-->
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<p class="copyright"><TMPLTAG:COPYRIGHT></p>
+	<p class="link"><TMPLTAG:LINKS></p>
+</div>
+</body>
+</html>

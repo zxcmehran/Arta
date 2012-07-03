@@ -1,0 +1,31 @@
+div.comment {
+	border: 1px dashed gray;
+}
+
+div.unpublished {
+	border: 3px dashed orange;
+}
+
+div.comment table td.commentNumber, 
+div.comment table td.commentTitle,
+div.comment table td.commentAvatar
+{
+	background: #dddddd;
+}
+
+div.comment table td.commentContent
+{
+	vertical-align:top;
+	background: #FFF8F0;
+	padding: 5px 5px 5px 5px;
+}
+
+div.comment > table {
+	background: #dddddd;
+	border-spacing: 3px;
+	width:100%;
+}
+
+div.level0 table td.commentContent{
+	background: #ffffff;
+}

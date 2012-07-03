@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<install>
+	<extension type="language" client="admin">
+		<name>fa-IR</name>
+		<title>Persian (پارسی)</title>
+        <files>
+			<dir destination="help/">fa-IR</dir>
+		</files>
+	</extension>
+</install>

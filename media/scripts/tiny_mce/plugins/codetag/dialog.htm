@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#codetag_dlg.title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../../codepress/codepress.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+</head>
+<body>
+
+<form onsubmit="CodetagDialog.insert();return false;" action="#">
+	<p>{#codetag_dlg.desc}</p>
+
+	<select id="codetype" name="codetype" onchange="CodetagDialog.codeType();">
+		<option value="generic">Generic</option>
+		<option value="php">PHP</option>
+		<option value="javascript">JavaScript</option>
+		<option value="css">CSS</option>
+		<option value="html">HTML</option>
+		<option value="java">Java</option>
+		<option value="perl">Perl</option>
+		<option value="ruby">Ruby</option>
+		<option value="sql">SQL</option>
+		<option value="vbscript">VBScript</option>
+		<option value="csharp">C#</option>
+		<option value="text">Text</option>
+	</select>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<input type="checkbox" name="no_highlight" id="no_highlight" onclick="CodetagDialog.noHighlight();"/><label for="no_highlight">{#codetag_dlg.no_highlight}</label>
+
+	<textarea name="codecontent" id="codecontent" class="codepress generic" style="width:100%; height:350px;"></textarea>
+	
+	
+	
+
+
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#insert}" onclick="CodetagDialog.insert();" />
+		</div>
+
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+		</div>
+	</div>
+</form>
+
+</body>
+</html>
