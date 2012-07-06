@@ -3,6 +3,7 @@ class ArtaInstallerSessionHandler {
 
 	static function open($save_path, $session_name)
 	{
+		if(!is_dir(ROOTDIR.'/tmp') AND !mkdir(ROOTDIR.'/tmp')) return false;
 		return true;
 	}
 	
