@@ -129,7 +129,7 @@ class ArtaUrgentUpdater {
 				$todo = array();
 				if($xml AND isset($xml->change)){
 					foreach($xml->change as $v){
-						if((!isset($v['before']) OR version_compare($v['before'], ArtaVersion::VERSION, '>')) AND (!isset($v['after']) OR version_compare($v['after'], ArtaVersion::VERSION, '<=')) AND (!is_file(ARTAPATH_BASEDIR.'/'.$v['file'])  OR md5_file(ARTAPATH_BASEDIR.'/'.$v['file'])==@$v['old_checksum'])){
+						if((!isset($v['before']) OR version_compare($v['before'], ArtaVersion::VERSION, '>=')) AND (!isset($v['after']) OR version_compare($v['after'], ArtaVersion::VERSION, '<=')) AND (!is_file(ARTAPATH_BASEDIR.'/'.$v['file'])  OR md5_file(ARTAPATH_BASEDIR.'/'.$v['file'])==@$v['old_checksum'])){
 							$todo [] = array('url'=>trim((string)$v), 'file'=>(string)$v['file'], 'checksum'=>(string)$v['new_checksum']);
 						}
 					}
