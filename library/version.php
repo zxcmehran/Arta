@@ -24,7 +24,7 @@ class ArtaVersion{
 	/**
 	 * Arta version
 	 */
-	const VERSION = '1.0.0b2';
+	const VERSION = '1.0.0b3';
 
 	/**
 	 * Returns Arta credits
