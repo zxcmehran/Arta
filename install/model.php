@@ -70,6 +70,9 @@ class InstallerModel{
 		'widgets');
 		$output=array();
 		foreach($l as $v){
+			if(!is_dir($d.'/'.$v)){
+				@mkdir($d.'/'.$v);
+			}
 			$output[$v]=is_writeable($d.'/'.$v);
 		}
 		return $output;
