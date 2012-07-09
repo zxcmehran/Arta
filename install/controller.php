@@ -130,7 +130,7 @@ class InstallerController{
         echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_NAME.':</td><td><input name="db_name" value=""/></td></tr></table><hr/>';
         
         echo SET_DB_CREDENTIALS;
-        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_USER.':</td><td><input name="db_user" value=""/></td></tr><tr><td style="width:40%;">'.DB_PASS.':</td><td><input name="db_pass" type="password" value=""/></td></tr></table><hr/>';
+        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_USER.':</td><td><input name="db_user" value=""/></td></tr><tr><td style="width:40%;">'.DB_PASS.':</td><td><input name="db_pass" type="password" value=""/> *</td></tr></table><hr/>';
         
         echo SET_DB_PREFIX;
         echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_PREFIX.':</td><td><input name="db_prefix" value="arta_"/></td></tr></table><hr/>';
@@ -181,6 +181,10 @@ class InstallerController{
             $db->query("SET CHARACTER SET 'utf8'");
             $db->query("SET sql_mode = 'MYSQL40'");
             
+            /*
+			 Commented out because:
+			 http://bugs.mysql.com/bug.php?id=53645
+			
             $r = @$db->query('SHOW GRANTS FOR CURRENT_USER()');
             if($r){ // if possible do a test.
                 $obj = @$r->fetch_array();
@@ -193,6 +197,7 @@ class InstallerController{
                     }
                 }
             }
+			 */
             
             if($model->testMYSQLI($db)==false){
                 echo '<div class="error">'.CANNOT_EXECUTE_TEST_QUERIES.'<br/>'.$model->getError().'</div>';
@@ -222,6 +227,10 @@ class InstallerController{
             mysql_query("SET CHARACTER SET 'utf8'", $db);
             mysql_query("SET sql_mode = 'MYSQL40'", $db);
             
+			/*
+			 Commented out because:
+			 http://bugs.mysql.com/bug.php?id=53645
+			
             $r = @mysql_query('SHOW GRANTS FOR CURRENT_USER()', $db);
             if($r){ // if possible do a test.
                 $obj = @mysql_fetch_array($r);
@@ -234,7 +243,7 @@ class InstallerController{
                     }
                 }
             }
-            
+            */
             if($model->testMYSQL($db)==false){
                 echo '<div class="error">'.CANNOT_EXECUTE_TEST_QUERIES.'<br/>'.$model->getError().'</div>';
                 echo $helper->addBack();
@@ -523,6 +532,7 @@ class InstallerController{
 			$params[$k]=php_xmlrpc_encode($v);
 		}
 		$f=new xmlrpcmsg('logger.logCoreInstallation', $params);
+		//$connection->setDebug(2);
 		$connection->send($f);
 		
     	echo sprintf(FINISH_MSG, $url.'/index.php?pack=config&view=config');
