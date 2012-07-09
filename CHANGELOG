@@ -2,7 +2,10 @@
 # Changelog File for Arta
 #################################
 
+<1.0.0b2>
+-	Fixed a problem on installer when checking for directory permissions.
+</1.0.0b2>
 
-<1.0.0>
+<1.0.0b1>
 -	Just designing of Arta project completed.
-</1.0.0>
+</1.0.0b1>
