@@ -49,7 +49,7 @@ function plgGetUpdates(){
 	$xml=@ArtaSimpleXML::parseString($c);
 	if($xml!=false AND version_compare($xml->version, ArtaVersion::VERSION) > 0){
 		echo '<div class="cphome_msg"/><img src="'.Imageset('info.png').'" alt="i"/> '.trans('A NEWER VERSION AVAILABLE TO UPDATE').'<br/>';
-		echo '<b>Arta '.$xml->version.'</b> ('.trans('RELDATE').': '.ArtaDate::_($xml->releaseDate, 'Y/m/d').') ';
+		echo '<b>Arta '.$xml->version.($xml->isStable=='1'?'':' (UNSTABLE)').'</b> ('.trans('RELDATE').': '.ArtaDate::_($xml->releaseDate, 'Y/m/d').') ';
 		echo '<a href="'.htmlspecialchars($xml->downloadURL).'" target="_blank">'.trans('DOWNLOAD').'</a>';
 	}else{
 		ArtaFile::delete(ARTAPATH_ADMIN.'/tmp/updatecheckres.xml');

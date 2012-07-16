@@ -2,6 +2,11 @@
 # Changelog File for Arta
 #################################
 
+<>
+-       Version Checker now tells user that latest version released is stable or not.
+-	Fixed redirection on pages package when saving a module, because it jumps out of "package" tmpl.
+</>
+
 <1.0.0b3>
 -	Fixed a mistake in .hgignore which ignored two files incorrectly.
 -	Fixed Urgent Updater version domain selection block.

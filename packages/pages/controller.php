@@ -167,6 +167,8 @@ class PagesController extends ArtaPackageController{
 		if(ArtaUsergroup::getPerm('can_addedit_pages', 'package', 'pages')==false){
 			ArtaError::show(403, trans('YOU CANNOT ADDEDIT PAGES'));
 		}
+		$template = ArtaLoader::Template();
+		$template->tmpl='package';
 		$vars=ArtaRequest::getVars('post');
 		$vars=ArtaUtility::array_extend($vars, array('title'=>'', 'content'=>'', 'params'=>array(), 'settings'=>array()));
 		$vars['params']=ArtaUtility::array_extend($vars['params'], array('width'=>'200px','height'=>'200px','top'=>mt_rand(100,200).'px','left'=>mt_rand(100,200).'px','other'=>''));
