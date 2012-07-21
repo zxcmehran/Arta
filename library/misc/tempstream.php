@@ -135,6 +135,15 @@ class ArtaTempStream {
 		}
 		return true;
 	}
+        
+        function url_stat($path, $flags){
+            $from=parse_url($path);
+            $from=$from['host'];
+            if(isset($GLOBALS['STREAM_CACHE'][$from])){
+                return array('size'=>strlen($GLOBALS['STREAM_CACHE'][$from]));
+            }
+            return false;
+        }
 }
 
 stream_wrapper_register("artatmp", "ArtaTempStream")
