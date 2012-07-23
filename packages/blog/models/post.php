@@ -57,8 +57,9 @@ class BlogModelPost extends ArtaPackageModel{
 
 		
 		if((string)$v->tags!==''){
-			$c=ArtaLoader::Config();
-			$c->keywords .=', '.$v->tags;
+			$t=ArtaLoader::Template();
+			$t->keywords .=', '.$v->tags;
+                        $t->description = '';
 		}
 		
 		$db->setQuery('UPDATE #__blogposts SET hits= hits+1 WHERE id='.$db->Quote($id), array('hits'));

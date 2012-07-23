@@ -22,9 +22,9 @@ class PagesModelPage extends ArtaPackageModel{
 		}else{
 			$n='';
 		}
-		$c=ArtaLoader::Config();
-		$c->description.=' - '.$data->desc;
-		$c->keywords.=', '.$data->tags;
+		$t=ArtaLoader::Template();
+		$t->description.=$data->desc;
+		$t->keywords.=', '.$data->tags;
 		$mods=explode(',',$data->mods);
 		foreach($mods as $mk=>$mv){
 			if(trim($mv)==''){

@@ -25,8 +25,8 @@ class ArtaTagsHtml{
 			'<meta http-equiv="Content-Type" content="text/html; charset='.trans('_LANG_CHARSET').'" />'."\n\t".
 			'<meta name="robots" content="index, follow" />'."\n\t".
 			'<meta name="generator" content="'.htmlspecialchars($template->getGenerator()).'" />'."\n\t".
-			'<meta name="keywords" content="'.htmlspecialchars($config->keywords).'" />'."\n\t".
-			'<meta name="description" content="'.htmlspecialchars($config->description).'" />'."\n\t".
+			'<meta name="keywords" content="'.htmlspecialchars($template->keywords).'" />'."\n\t".
+			'<meta name="description" content="'.htmlspecialchars($template->description).'" />'."\n\t".
 			"<script>\nvar site_url = '".JSValue(ArtaURL::getSiteURL())."';\nvar client_url='".ArtaURL::getClientURL()."';\nvar img_url='".JSValue(ArtaURL::getClientURL())."imagesets/".JSValue($template->getImgSetName())."/';".
 			"\n</script>";
 		return $m;

@@ -77,6 +77,20 @@ class ArtaTemplate {
 	 * @access	private
 	 */
 	private $generator='Arta Content Management Framework';
+        
+        /**
+	 * Keywords of page
+	 *
+	 * @var	string
+	 */
+	var $keywords='';
+        
+        /**
+	 * Description of page
+	 *
+	 * @var	string
+	 */
+	var $description='';
 
 	/**
 	 * Document character set
@@ -159,6 +173,10 @@ class ArtaTemplate {
 		$this->direction=trans('_LANG_DIRECTION')=='_LANG_DIRECTION'?$this->direction:trans('_LANG_DIRECTION');
 		$this->lang=trans('_LANG_NAME');
 		$this->lang_id=trans('_LANG_ID');
+                
+                $config = ArtaLoader::Config();
+                $this->keywords = $config->keywords;
+                $this->description = $config->description;
 		
 		// load HTML because we need it always...
 		$this->includeViewtype();
