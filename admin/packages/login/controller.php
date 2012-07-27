@@ -39,8 +39,19 @@ class LoginController extends ArtaPackageController{
 		$redirect= $vars->redirect ? base64_decode($vars->redirect) : 'index.php';
 
 		if($res == 'COMPLETE'){
-			if(isset($vars->unsecure)&&substr($redirect,0,6)=='index.'){
-				$redirect=ArtaURL::getURL(array('protocol'=>'http://', 'path'=>'','path_info'=>'', 'query'=>'')).makeURL($redirect);
+                        if(substr($redirect, 0, 9)=='index.php'){
+                            if(trim((string)$vars->f_language)){
+                                ArtaRequest::addVar('language', (string)$vars->f_language);
+                                $language = ArtaLoader::Language();
+                                $language->addtoNeed('login','package',ARTAPATH_CLIENTDIR, (string)$vars->f_language);
+                            }else{
+                                $redirect='#'.$redirect;
+                            }
+                            $redirect = makeURL($redirect);
+                            $made = true;
+                        }
+			if(isset($vars->unsecure)&&(substr($redirect,0,6)=='index.' || isset($made))){
+				$redirect=ArtaURL::getURL(array('protocol'=>'http://', 'path'=>'','path_info'=>'', 'query'=>'')).(isset($made)?$redirect:makeURL($redirect));
 			}
 			redirect($redirect, trans('YOU LOGGED IN SUCC'));
 		}else{

@@ -10,6 +10,7 @@
 -       Changed usages of ArtaConfig::$keywords and ArtaConfig::$description to ArtaTemplate.
 -       Trimmed spaces from links of admin menu.
 -       Beautified License Agreement box on Installer.
+-       Added language selection controls on AdminCP login page.
 </>
 
 <1.0.0b3>

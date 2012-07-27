@@ -31,6 +31,23 @@ if($secure==0){
 				<td><?php echo trans('PASSWORD'); ?>:</td>
 				<td><input name="f_password" type="password" class="acceptRet"/></td>
 			</tr>
+                        <tr>
+				<td><?php echo trans('LANGUAGE'); ?>:</td>
+                                <td><?php 
+                                $db = ArtaLoader::DB();
+                                $db->setQuery('SELECT `name`,`title` FROM #__languages WHERE `client`='.$db->Quote('admin'));
+                                $langs = $db->loadObjectList();
+                                ?>
+                                    <select name="f_language">
+                                        <option value=""><?php echo trans('USER DEFAULT'); ?></option>
+                                        <?php
+                                            foreach($langs as $lang){
+                                                echo '<option value="'.htmlspecialchars($lang->name).'">'.htmlspecialchars($lang->title).'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+			</tr>
 			<tr>
 				<td><?php echo trans('REMEMBER ME'); ?></td>
 				<td><input type="checkbox" name="remember"/></td>
