@@ -1,7 +1,7 @@
 INSERT INTO `#__admin_menu` (`id`, `title`, `link`, `pic`, `parent`, `order`) VALUES
 (1, 'Main', '', '', 0, 0),
 (2, 'Control Panel Home', 'index.php', 'home_small.png', 1, 0),
-(3, 'Logout', 'index.php?pack=login&task=logout ', 'false.png', 1, 1),
+(3, 'Logout', 'index.php?pack=login&task=logout', 'false.png', 1, 1),
 (4, 'Configuration', 'index.php?pack=config', '', 0, 1),
 (5, 'System Configuration', 'index.php?pack=config&view=config', 'config.png', 4, 0),
 (6, 'Default User Parameters', 'index.php?pack=config&view=defaults', 'apply.png', 4, 1),

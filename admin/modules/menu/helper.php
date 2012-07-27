@@ -27,7 +27,7 @@ class ModuleMenuHelper{
 					if($v->link==''){
 						$v->link='#';
 					}
-					$r.='<a href="'.htmlspecialchars($v->link).'">';
+					$r.='<a href="'.htmlspecialchars(trim($v->link)).'">';
 					
 					$r.='<span class="menuicon">';
 					if($this->img && strlen($v->pic)>0){
