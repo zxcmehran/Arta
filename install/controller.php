@@ -93,7 +93,7 @@ class InstallerController{
             $_SESSION['last_valid_step']= $_step;
         }
         
-        echo '<textarea readonly="readonly" style="width:95%; height:300px; overflow:auto;">';
+        echo '<textarea readonly="readonly" style="width:95%; height:300px; overflow:auto;direction:ltr; background:white;">';
         echo htmlspecialchars($model->getLicenseAgreement());
         echo '</textarea>';
         
