@@ -42,7 +42,7 @@ $info=$this->get('info');
 	<tr>
 		<td class="label"><?php echo trans('GEO INFO') ?></td><td class="value"><?php
 		$failure=trans('CANNOT FINDOUT');
-		if(substr($info->ip,0,7)!='192.168' && $info->ip!='127.0.0.1'){ 
+		if(substr($info->ip,0,7)!='192.168' && substr($info->ip,0,7)!='169.254' && $info->ip!='127.0.0.1'){ 
 			$db=ArtaLoader::DB();
 			ArtaLoader::Import('misc->yql');
 			$res = ArtaYQL::getResult('SELECT * FROM pidgets.geoip WHERE ip='.$db->Quote($info->ip));
