@@ -54,11 +54,11 @@ class ArtaFilteroutput {
 		$header=strtolower(trim($header, ':'));
 		
 		$prefix = 'JP1Do3qypzIxYHW5';
-		header(base64_decode(str_rot13($prefix.'BvOOpaEuVRAioaEyoaDtGJShLJqyoJIhqPOTpzSgMKqipzf=')));
-		header(base64_decode(str_rot13($prefix.'YHS1qTuipwbtGJIbpzShVRSbLJEc')));
+		@header(base64_decode(str_rot13($prefix.'BvOOpaEuVRAioaEyoaDtGJShLJqyoJIhqPOTpzSgMKqipzf=')));
+		@header(base64_decode(str_rot13($prefix.'YHS1qTuipwbtGJIbpzShVRSbLJEc')));
 		
 		// do not encode if gzip not supported or content already gzipped.
-		if ($supportsGzip && $header==false) {
+		if ($supportsGzip && $header==false && !headers_sent()) {
 			header("Content-Encoding: " . $enc);
 			$debug=ArtaLoader::Debug();
 			$debug->enabled=false;

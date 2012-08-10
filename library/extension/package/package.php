@@ -214,7 +214,7 @@ class ArtaPackage extends ArtaPackageController{
 	function addResult() {
 		if($this->in_process==true){
 			$this->content = ob_get_contents();
-			ob_end_clean();
+			@ob_end_clean();
 			$GLOBALS['DEBUG']['SQL'][]='**** Package Processing finished. ****';
 			$debug=ArtaLoader::Debug();
 			$debug->report('Package Processing Finished.', 'ArtaPackage::addResult', true);

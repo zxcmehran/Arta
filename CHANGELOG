@@ -12,6 +12,7 @@
 -	Beautified License Agreement box on Installer.
 -	Added language selection controls on AdminCP login page.
 -	Fixed a bug on User Location map finder.
+-	Optimized template engine, so developers can end output buffering in the middle of a package in addition to using raw view type.
 </>
 
 <1.0.0b3>

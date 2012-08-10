@@ -180,6 +180,10 @@ class ArtaTemplate {
 		
 		// load HTML because we need it always...
 		$this->includeViewtype();
+		
+		// add headers
+		$this->Header("X-Powered-By", 'Arta Content Management Framework');
+		$this->Header("X-Powered-By-Author", 'Mehran Ahadi');
 	}
 	
 	
@@ -285,9 +289,6 @@ class ArtaTemplate {
 		// call render function of template type class
 		eval('$this->content = ArtaTemplate'.ucfirst($this->type).'::render();');
 		
-		// add headers
-		$this->Header("X-Powered-By", 'Arta Content Management Framework');
-		$this->Header("X-Powered-By-Author", 'Mehran Ahadi');
 		if(getVar('xmldebug')){
 			header('Content-type: text/xml');
 		}
@@ -328,7 +329,14 @@ class ArtaTemplate {
 	 * @param	string	$value	variable value
 	 */
 	function Header($key, $value=null){
-		header($key.': '.$value);
+		$file = $line = null;
+		if(headers_sent($file,$line)){
+			$debug = ArtaLoader::Debug();
+			$debug->report('Failed to send header "'.$key.': '.$value.'". Headers are already sent'.($file!=null?' at '.ArtaFile::getRelatedPath($file).'@'.$line:'').'.', 'ArtaTemplate::Header');
+			return false;
+		}else
+			header($key.': '.$value);
+		return true;
 	}
 	
 	/**
