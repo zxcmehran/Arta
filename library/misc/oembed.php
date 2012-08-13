@@ -188,6 +188,7 @@ class ArtaOEmbed
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 		curl_setopt($ch, CURLOPT_USERAGENT,ARTA_USERAGENT);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		set_time_limit(40);
 		// grab URL
 		$c = @curl_exec($ch);
 		
