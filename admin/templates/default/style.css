@@ -239,6 +239,10 @@ fieldset{
 	border: none;
 }
 
+#topmenu > span.adminmenu li.level1 {
+	width: 98px;
+}
+
 #topmenu > span.adminmenu a:hover, #menu > span.adminmenu .current_page_item a {
 	background: #4E9CE9;
 	color: white;
