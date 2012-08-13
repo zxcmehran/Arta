@@ -2,7 +2,7 @@
 # Changelog File for Arta
 #################################
 
-<>
+<1.0.0rc1>
 -	Fixed redirection on pages package when saving a module, because it jumps out of "package" tmpl.
 -	Version Checker now tells user that latest version released is stable or not.
 -	Added url_stat() method to Arta Temp stream wrapper class in ArtaLib.
@@ -15,7 +15,7 @@
 -	Optimized template engine, so developers can end output buffering in the middle of a package in addition to using raw view type.
 -	Fixed positioning on Admin menu on chrome browser.
 -	Fixed Timeout problems of cURL usages on entire project.
-</>
+</1.0.0rc1>
 
 <1.0.0b3>
 -	Fixed a mistake in .hgignore which ignored two files incorrectly.
