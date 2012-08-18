@@ -60,7 +60,7 @@ class ArtaUrgentUpdater {
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,10);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 			curl_setopt($ch, CURLOPT_FILETIME, true);
-			set_time_limit(60);
+			@set_time_limit(60);
 			foreach($todo as $k => $task){
 				curl_setopt($ch, CURLOPT_URL, $task['url']);
 				$c= @curl_exec($ch);

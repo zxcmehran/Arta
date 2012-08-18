@@ -17,7 +17,7 @@ if(php_sapi_name()=='cli'){
 	die('ERROR: Use HTTP/1.1 protocol.');
 }*/
 
-set_time_limit(30);
+@set_time_limit(30);
 
 /**
  * Directory Separator <b>/</b> or <b>\</b> (According to platform)

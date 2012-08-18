@@ -2,6 +2,10 @@
 # Changelog File for Arta
 #################################
 
+<>
+-	Ignored warnings which would occur when time limit is set on "safe_mode" enabled environments.
+</>
+
 <1.0.0rc1>
 -	Fixed redirection on pages package when saving a module, because it jumps out of "package" tmpl.
 -	Version Checker now tells user that latest version released is stable or not.

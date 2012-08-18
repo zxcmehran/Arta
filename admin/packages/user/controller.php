@@ -322,7 +322,7 @@ class UserController extends ArtaPackageController{
 							curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,10);
 							curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 							curl_setopt($ch, CURLOPT_USERAGENT,ARTA_USERAGENT);
-							set_time_limit(40);
+							@set_time_limit(40);
 							// grab URL
 							$c= @curl_exec($ch);
 							if($c==false){
