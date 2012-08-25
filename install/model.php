@@ -159,7 +159,7 @@ class InstallerModel{
 	            $dbc->query("SET sql_mode = 'MYSQL40'");
 	    	}else{
 	    		$dbc =@ mysql_connect($_SESSION['db_data']['db_host'],$_SESSION['db_data']['db_user'], $_SESSION['db_data']['db_pass']);
-	            if(mysql_errno($dbc)!=0 || @mysql_select_db($_SESSION['db_data']['db_name'], $dbc)==false){
+	            if(@mysql_errno($dbc)!=0 || @mysql_select_db($_SESSION['db_data']['db_name'], $dbc)==false){
 	                return false;
 	            }
 	            mysql_query("SET NAMES 'utf8'", $dbc);

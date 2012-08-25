@@ -104,7 +104,7 @@ define('INVALID_DB_PREFIX_CHARS', 'پیشوند جداول شامل کاراکت
 define('INVALID_DB_INFO', 'خطا: اتصال به بانک اطلاعاتی موفقیت آمیز نبود. <br/>پیام سرور: "%s"');
 define('MYSQL_MUSTBE_GREATER_THAN_412', 'خطا: سرور MySQL باید جدیدتر از نسخه ی  4.1.2 باشد وگرنه آرتا نمی تواند عمل کند.');
 define('NO_ENOUGH_PRIVS', 'سطح دسترسی کاربر یاد شده کافی نیست.');
-define('CANNOT_EXECUTE_TEST_QUERIES', 'دستورات مدیریت اطلاعات با موفقیت اجرا نشدند.');
+define('CANNOT_EXECUTE_TEST_QUERIES', 'دستورات مدیریت اطلاعات با موفقیت اجرا نشدند. مطمئن شوید که کاربر بانک اطلاعاتی توانایی اجرای دستورات ذکر شده را داشته باشد، همچنین، Collation بانک اطلاعاتی برابر با utf8_unicode_ci باشد.');
 define('DB_CONNECTED_SUCC', 'ارتباط با موفقیت برقرار شد.');
 define('TEST_QUERIES_EXECD_SUCC', 'تست توانایی تغییر داده ها، با موفقیت انجام شد.');
 define('DB_IS_NOW_AVAILABLE', 'ارتباط با سرور آماده ی استفاده است. لطفاً به قدم بعدی پیش بروید.');

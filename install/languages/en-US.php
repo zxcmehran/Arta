@@ -104,7 +104,7 @@ define('INVALID_DB_PREFIX_CHARS', 'Tables prefix contains invalid characters. Yo
 define('INVALID_DB_INFO', 'Error: Could not connect to Database Server. Please try again. <br/>Server said: "%s"');
 define('MYSQL_MUSTBE_GREATER_THAN_412', 'Error: MySQL Version must be greater than 4.1.2 or arta will not work.');
 define('NO_ENOUGH_PRIVS', 'The provided user\'s privileges are insufficient.');
-define('CANNOT_EXECUTE_TEST_QUERIES', 'Cannot execute data read/write testing queries on the database.');
+define('CANNOT_EXECUTE_TEST_QUERIES', 'Cannot execute data read/write testing queries on the database. Make sure that DB User can execute essential statements and DB Collation is set to utf8_unicode_ci.');
 define('DB_CONNECTED_SUCC', 'Database connection successfully established.');
 define('TEST_QUERIES_EXECD_SUCC', 'Data modification ability test completed successfully.');
 define('DB_IS_NOW_AVAILABLE', 'Database connection is ready to use. Please proceed to next step.');
