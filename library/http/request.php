@@ -190,11 +190,9 @@ class ArtaRequest {
 					$secondfrag = @$vars[1];
 					$vars=array_slice($vars, 1);
 					
-					if(version_compare(PHP_VERSION, '6.0.0', '>')){
-						$err = error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE);
-					}else{
-						$err = error_reporting(E_ALL ^ E_NOTICE);
-					}
+					// E_NOTICE and E_DEPRECATED are in E_ALL
+					// but E_STRICT is added to E_ALL starting from PHP >= 5.4.0
+					$err = @error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE & ~E_DEPRECATED);
 					eval('$layout='.ucfirst($packname).'SEFParser($vars);');
 					error_reporting($err);
 					

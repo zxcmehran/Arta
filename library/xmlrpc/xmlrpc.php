@@ -43,17 +43,29 @@ class ArtaXMLRPC{
 	 * @var	array
 	 */
 	var $funcmap;
+	
+	/**
+	 * Error reporting last value before starting object
+	 * @var	int
+	 */
+	var $err = null;
 
 	/**
 	 * Constructor.
 	 */
 	function __construct(){
-		error_reporting(E_ALL ^ E_STRICT ^ E_DEPRECATED);
+		$this->err = (int)@error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED);
 		require_once(ARTAPATH_LIBRARY.'/xmlrpc/xmlrpc/lib/xmlrpc.inc');
 		require_once(ARTAPATH_LIBRARY.'/xmlrpc/xmlrpc/lib/xmlrpc_wrappers.inc');
-		
 		$debug=ArtaLoader::Debug();
 		$debug->report('ArtaXMLRPC started.', 'ArtaXMLRPC::__construct');
+	}
+	
+	/**
+	 * Destructor. Restores error reporting value.
+	 */
+	function __destruct() {
+		if($this->err !==null) error_reporting($this->err);
 	}
 
 	/**

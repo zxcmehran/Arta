@@ -69,11 +69,7 @@ function _loadEssentials() {
 		ob_end_clean();
 	}
 	//error reporting
-	if(version_compare(PHP_VERSION, '6.0.0', '>=')){
-		error_reporting(E_ALL ^ E_STRICT); // fix for php6
-	}else{
-		error_reporting(E_ALL | E_STRICT);
-	}
+	error_reporting(E_ALL | E_STRICT); //STRICT IS ENABLED BY DEFAULT IN ARTA
 	ini_set('display_errors', 'On');
     
     chdir(ARTAPATH_BASEDIR);

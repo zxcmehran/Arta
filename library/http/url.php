@@ -543,11 +543,7 @@ class ArtaURL{
 			if(function_exists(ucfirst($pack).'SEFMaker')){
 				$packname=ArtaString::removeIllegalChars($pack, array_merge(range('a','z'),range('0','9'), array('_')));
 				
-				if(version_compare(PHP_VERSION, '6.0.0', '>')){
-					$err = error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE);
-				}else{
-					$err = error_reporting(E_ALL ^ E_NOTICE);
-				}
+				$err = @error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE & ~E_DEPRECATED);
 				eval('$layout='.ucfirst($packname).'SEFMaker($arr);');
 				error_reporting($err);
 				

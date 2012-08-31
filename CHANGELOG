@@ -5,6 +5,7 @@
 <>
 -	Ignored warnings which would occur when time limit is set on "safe_mode" enabled environments.
 -	Improved a vague error message on installer to be understandable.
+-	Corrected error reporting values in some places around project.
 </>
 
 <1.0.0rc1>
