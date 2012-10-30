@@ -359,4 +359,20 @@ class ArtaUtility{
 
 }
 
+if(!function_exists('array_replace')){
+	/**
+	 * A replacement for array_replace function, designed for PHP<5.3.0
+	 * 
+	 * @param	array	$main
+	 * @param	array	$overlay
+	 * @return	array 
+	 */
+	function array_replace($main, $overlay){
+		foreach($overlay as $k=>$v){
+			$main[$k] = $v;
+		}
+		return $main;
+	}
+}
+
 ?>
