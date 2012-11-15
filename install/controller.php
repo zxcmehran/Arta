@@ -163,7 +163,7 @@ class InstallerController{
         if($_POST['db_type']=='mysqli'){
             $db=@ new mysqli($_POST['db_host'],$_POST['db_user'], $_POST['db_pass'], $_POST['db_name']);
             if(mysqli_connect_errno()!=0){
-                printf('<div class="error">'.INVALID_DB_INFO.'</div>', mysqli_connect_error());
+                printf('<div class="error">'.INVALID_DB_INFO.'</div>', @mysqli_connect_error());
                 echo $helper->addBack();
                 return;
             }
@@ -200,7 +200,7 @@ class InstallerController{
 			 */
             
             if($model->testMYSQLI($db)==false){
-                echo '<div class="error">'.CANNOT_EXECUTE_TEST_QUERIES.'<br/>'.$model->getError().'</div>';
+                echo '<div class="error">'.CANNOT_EXECUTE_TEST_QUERIES.'<br/><pre>'.($db->errno==0?'Collation Error: Could not read inserted unicode sample content.':($db->errno.': '.$db->error)).'</pre></div>';
                 echo $helper->addBack();
                 return;
             }
@@ -209,7 +209,7 @@ class InstallerController{
             $db=@ mysql_connect($_POST['db_host'],$_POST['db_user'], $_POST['db_pass']);
             
             if(mysql_errno($db)!=0 || @mysql_select_db($_POST['db_name'], $db)==false){
-                printf('<div class="error">'.INVALID_DB_INFO.'</div>', mysql_error($db));
+                printf('<div class="error">'.INVALID_DB_INFO.'</div>', @mysql_error($db));
                 echo $helper->addBack();
                 return;
             }
@@ -245,7 +245,7 @@ class InstallerController{
             }
             */
             if($model->testMYSQL($db)==false){
-                echo '<div class="error">'.CANNOT_EXECUTE_TEST_QUERIES.'<br/>'.$model->getError().'</div>';
+                echo '<div class="error">'.CANNOT_EXECUTE_TEST_QUERIES.'<br/><pre>'.(mysql_errno($db)==0?'Collation Error: Could not read inserted unicode sample content.':(mysql_errno($db).': '.mysql_error($db))).'</pre></div>';
                 echo $helper->addBack();
                 return;
             }

@@ -149,7 +149,7 @@ class InstallerModel{
     function getConnection(){
     	global $dbc;
     	if($dbc==null){
-    		if(DBTYPE=='mysqli'){
+    		if(@DBTYPE=='mysqli'){
     			$dbc = @ new mysqli($_SESSION['db_data']['db_host'],$_SESSION['db_data']['db_user'], $_SESSION['db_data']['db_pass'], $_SESSION['db_data']['db_name']);
 	            if(mysqli_connect_errno()!=0){
 	                return false;

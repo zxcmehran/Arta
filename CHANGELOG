@@ -7,6 +7,7 @@
 -	Improved a vague error message on installer to be understandable.
 -	Corrected error reporting values in some places around project.
 -	Added a replacement for array_replace() function.
+-	Fixed some problems with error reporting for selecting a DB with invalid collation on system installation.
 </>
 
 <1.0.0rc1>
