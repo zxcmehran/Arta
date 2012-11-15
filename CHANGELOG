@@ -8,6 +8,7 @@
 -	Corrected error reporting values in some places around project.
 -	Added a replacement for array_replace() function.
 -	Fixed some problems with error reporting for selecting a DB with invalid collation on system installation.
+-	Installer now warns users about problems which will be caused by using back button during installation wizard.
 </>
 
 <1.0.0rc1>
