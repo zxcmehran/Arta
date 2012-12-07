@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2012/12/06 18:14 +3.5 GMT $
  * @link		http://www.artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -224,9 +224,10 @@ class ArtaLanguage {
 			return;
 		}else{
 			$GLOBALS['DEBUG']['LANGUAGE'][] = $name;
-			$this->processed[]=$basedir.'/languages/'.$lang.'/'.$name;
 			$name = ArtaFilterinput::safeAddress($name);
+			$this->processed[]=$basedir.'/languages/'.$lang.'/'.$name;
 			$content = ArtaFile::read($basedir.'/languages/'.$lang.'/'.$name);
+			if($content===false) return false;
 			$content = str_replace(array("\r\n", "\r", "\n"), "\n", $content);
 			
 			if(substr(trim($content, ' '), -1) !== "\n"){
