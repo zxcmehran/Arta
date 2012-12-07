@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2012/12/06 17:55 +3.5 GMT $
  * @link		http://www.artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -329,14 +329,12 @@ class ArtaRequest {
 	 */
 	static function getSEFType($data){
 		$c=ArtaLoader::Config();
-		switch($c->sef){
-			case '1':
+		switch((int)$c->sef){
+			case 1:
 				$sef = ArtaRequest::SEFtoNormal($data);		
-			//	$sef = ArtaURL::breakupQuery($sef);
 			break;
-			case '2':
+			case 2:
 				$sef = ArtaRequest::SEF2toNormal($data);
-	 		//	$sef = ArtaURL::breakupQuery($sef);
 			break;
 		}
 		return @$sef;
@@ -433,8 +431,8 @@ class ArtaRequest {
 		switch($ret_type){
 			case 'object':
 				$res='new stdClass';
-				$pre = '->';
-				$suf = '';
+				$pre = '->{\'';
+				$suf = '\'}';
 			break;
 			case 'array':
 				$res = 'array';
@@ -444,7 +442,7 @@ class ArtaRequest {
 		}
 		eval('$res = '.$res.'();');
 		foreach($input as $k => $v){
-			@eval('$res'.$pre.$k.$suf.' = $v;');
+			@eval('$res'.$pre.addslashes($k).$suf.' = $v;');
 		}
 		return $res;
 	}
