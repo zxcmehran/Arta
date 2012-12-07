@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2012/12/06 18:47 +3.5 GMT $
  * @link		http://www.artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -52,7 +52,7 @@ class ArtaError {
 		$encoding=trans('_LANG_CHARSET');
 		$dir=trans('_LANG_DIRECTION');
 		echo <<<_HTML
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="$lang" lang="$lang">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=$encoding" />

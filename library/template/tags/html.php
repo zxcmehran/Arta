@@ -5,7 +5,7 @@
  * @author		Mehran Ahadi
  * @package		Arta
  * @subpackage	ArtaTemplate
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2012/12/06 18:50 +3.5 GMT $
  * @link		http://www.artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -631,7 +631,7 @@ class ArtaTagsHtml{
 	static function getOfflineMsg(){
 		$config=ArtaLoader::Config();
 		$template=ArtaLoader::Template();
-		$res="<html><head><title>".htmlspecialchars($config->site_name)."</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=".trans('_LANG_CHARSET').'" />'.
+		$res="<!DOCTYPE html>\n<html><head><title>".htmlspecialchars($config->site_name)."</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=".trans('_LANG_CHARSET').'" />'.
 			'<meta name="robots" content="index, follow" />'.
 			'<meta name="generator" content="'.$template->getGenerator().'" />'.
 			'<meta name="keywords" content="'.htmlspecialchars($config->keywords).'" />'.
