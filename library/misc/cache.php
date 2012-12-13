@@ -77,9 +77,13 @@ class ArtaCache{
 		if(self::isEnabled()){
 			if($name!==null && $group!==null){
 				$d='<?php if(!defined(\'ARTA_VALID\')){die(\'No access\');} $data=\''.ArtaFilteroutput::PHPValue($data).'\'; ?>';
-				$r = ArtaFile::write(ARTAPATH_CLIENTDIR.'/tmp/cache/'.$group.'.'.$name.'.php', $d);
+				$file = ARTAPATH_CLIENTDIR.'/tmp/cache/'.$group.'.'.$name.'.php';
+				if(is_file($file) && self::$map[$file] ==  md5($d)){ //No need to rewrite.
+					return self::setLastModified($group, $name);
+				}
+				$r = ArtaFile::write($file, $d);
 				if($r==true){
-					self::$map[ARTAPATH_CLIENTDIR.'/tmp/cache/'.$group.'.'.$name.'.php']=md5_file(ARTAPATH_CLIENTDIR.'/tmp/cache/'.$group.'.'.$name.'.php');
+					self::$map[$file]=md5_file($file);
 					self::putDataChecksumTable();
 					return true;
 				}
