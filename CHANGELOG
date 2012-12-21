@@ -9,6 +9,11 @@
 -	Added a replacement for array_replace() function.
 -	Fixed some problems with error reporting for selecting a DB with invalid collation on system installation.
 -	Installer now warns users about problems which will be caused by using back button during installation wizard.
+-	Offline Message page and Error pages now have doctype of HTML5.
+-	Fixed a bug on ArtaRequest class.
+-	Just a little tweak to ArtaLanguage class.
+-	ArtaCache now only writes cached items if it's changed, to prevent possible conflicts.
+-	System now loads template after processing package. It prevents missing of template locations which will be added on package.
 </>
 
 <1.0.0rc1>

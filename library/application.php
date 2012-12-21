@@ -122,12 +122,8 @@ class ArtaApplication {
 		}
 
 		
-		// Populate what modules are there and which locations is used,
+		// Populate what modules are there and which locations are used,
 		$module->filterData();
-		// Load template
-		$template->loadTemplate();
-		// Load only modules that those locations' are defined in Template 
-		$module->renderAll();
 		
 		if($module->enabled){
 			// If doctype remained HTML during package execution by setDoctype()
@@ -137,6 +133,11 @@ class ArtaApplication {
 				(CLIENT=='site'?'Powered by ':'').ArtaVersion::getCredits(true, CLIENT=='admin' AND @$user->user->id>0, CLIENT=='admin').'</p>', 
 				'copyright');
 		}
+		
+		// Load template
+		$template->loadTemplate();
+		// Load only modules that those locations' are defined in Template 
+		$module->renderAll();
 		
 		// Now replace location placeholders with values
 		$template->prepare();
