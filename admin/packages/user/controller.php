@@ -119,7 +119,7 @@ class UserController extends ArtaPackageController{
 			$v=ArtaFilterinput::clean($v, array(
 			'name'=>'string',
 			'username'=>'string',
-			'email'=>'string',
+			'email'=>'email',
 			'password'=>'string',
 			'verify_password'=>'string',
 			'activation'=>'bool',
@@ -140,6 +140,10 @@ class UserController extends ArtaPackageController{
 
 			if($v['name']==null){
 				ArtaError::show(400, trans('FORM ISNT COMPLETE'));
+			}
+			
+			if($v['email']==null){
+				ArtaError::show(400, trans('INVALID MAIL'));
 			}
 			
 			foreach($v as $kk=>$vv){

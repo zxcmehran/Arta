@@ -439,8 +439,8 @@ class UserController extends ArtaPackageController{
 		$vars=ArtaFilterinput::clean($vars, array(
 		'name'=>'string',
 		'username'=>'string',
-		'email'=>'string',
-		'email_verify'=>'string',
+		'email'=>'email',
+		'email_verify'=>'email',
 		'password'=>'string',
 		'password_verify'=>'string',
 		'misc'=>'array'

@@ -112,7 +112,7 @@ _HTML;
 			echo '<input type="button" onclick="redirect();" value="'.trans('IF YOU ARE NOT REDIRECTED CLICK HERE').'"/><br/>'."\n";
 		}
 		if($c->debug==true && $type!=200){
-			echo 'See Backtrace at Debug Output for more information.';
+			echo '<br/>See Backtrace at Debug Output for more information.';
 		}
 		
 		echo '<br/><div class="errorlinks"><a href="'.ArtaURL::getClientURL().'">'.trans('HOMEPAGE').'</a>';

@@ -42,6 +42,9 @@ class UserViewRegister extends ArtaPackageView{
 		return 'true';
 	}
 	function check_email($data){
+		if(!ArtaFilterinput::isEmail($data)){
+			return trans('INVALID MAIL');
+		}
 		$uc=ArtaLoader::User();
 		$username=$uc->getUser($data , 'email');
 		if(isset($username->id) && is_numeric($username->id) && $username->id > 0){

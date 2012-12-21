@@ -16,8 +16,7 @@ class UserModelUserlist{
 		$this->count=$db->loadResult();
 		
 		foreach($r as &$v){
-		//	$v->usergroup=$this->getUsergroup($v->usergroup);
-			if($v->lastvisit_date=='1970-01-01 00:00:00' || $v->lastvisit_date=='0000-00-00 00:00:00'){
+			if($v->lastvisit_date=='1970-01-01 00:00:00' || $v->lastvisit_date=='0000-00-00 00:00:00' || $v->lastvisit_date==null){
 				$v->lastvisit_date=trans('never');
 			}
 		}
