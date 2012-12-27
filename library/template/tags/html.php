@@ -330,7 +330,7 @@ class ArtaTagsHtml{
 
 	});</script><style>table.mceLayout{direction:ltr;}</style>';
 		ArtaTagsHtml::addHeader($sc);
-		$txt='<textarea id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" style="width: 95%; height:'.$params['height'].'px">'.htmlspecialchars($value).'</textarea><div onclick="if(this.innerHTML==\'&times;\'){tinyMCE.get(\''.htmlspecialchars($id).'\').hide();this.innerHTML=\'o\';}else{tinyMCE.get(\''.htmlspecialchars($id).'\').show();this.innerHTML=\'&times;\';}" style="font-weight:bold; color:red; font-size:16px;cursor: pointer;">&times;</div>';
+		$txt='<textarea id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($name).'" style="width: 95%; height:'.$params['height'].'px">'.htmlspecialchars($value).'</textarea><div onclick="if(this.innerHTML==\'&times;\'){tinyMCE.execCommand(\'mceRemoveControl\', false, \''.htmlspecialchars($id).'\');this.innerHTML=\'o\';}else{tinyMCE.execCommand(\'mceRemoveControl\', false, \''.htmlspecialchars($id).'\');this.innerHTML=\'&times;\';}" style="font-weight:bold; color:red; font-size:16px;cursor: pointer;">&times;</div>';
 		return $txt;
 	}
 	

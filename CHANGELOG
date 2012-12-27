@@ -16,6 +16,7 @@
 -	System now loads template after processing package. It prevents missing of template locations which will be added on package.
 -	Refactored ArtaFilterinput::is_email() to ArtaFilterinput::isEmail().
 -	Fixed some problems on users package on both clients.
+-	Forms now submit new values instead of old values when tinyMCE editor is set to off.
 </>
 
 <1.0.0rc1>
