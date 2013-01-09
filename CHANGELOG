@@ -18,6 +18,8 @@
 -	Fixed some problems on users package on both clients.
 -	Forms now submit new values instead of old values when tinyMCE editor is set to off.
 -	Extension configure page now shows a message instead of breaking process and sending 404 error when no settings are available for the extension.
+-	Added a button which lets user to hide location labels on template test mode.
+-	Removed footer from admin default template "package" file.
 </>
 
 <1.0.0rc1>

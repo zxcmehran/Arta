@@ -20,10 +20,6 @@ body{
 		<artatmpl type="message" />
 		<artatmpl type="package"/>
 	</div>
-	<div id="footer">
-		<artatmpl type="copyright"/>
-	</div>
-	<!-- end #footer -->
 	<artatmpl type="beforebodyend"/>
 </body>
 </html>
