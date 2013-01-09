@@ -20,6 +20,7 @@
 -	Extension configure page now shows a message instead of breaking process and sending 404 error when no settings are available for the extension.
 -	Added a button which lets user to hide location labels on template test mode.
 -	Removed footer from admin default template "package" file.
+-	Fixed a problem on filtering language translation items on language package of administration panel.
 </>
 
 <1.0.0rc1>

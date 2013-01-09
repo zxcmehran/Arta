@@ -90,8 +90,8 @@ class LanguageModelTranslations extends ArtaPackageModel{
 			}
 			
 			$v->__value=ArtaUtility::keyByChild($v->__value,'row_field');
-			
 
+			
 			foreach($v->__value as $kk=>&$vv){
 				$vv=(array)$vv;
 				$v->__value[$kk]=$vv;
@@ -103,7 +103,7 @@ class LanguageModelTranslations extends ArtaPackageModel{
 					$v->__info->invalid=true;
 				}
 			}
-
+			
 			if(!isset($v->__info->invalid)){
 				$v->__info->invalid=false;
 			}
@@ -119,6 +119,8 @@ class LanguageModelTranslations extends ArtaPackageModel{
 			}
 			
 		}
+		
+		unset($v);
 		
 		switch(@(int)getVar('show',false, '', 'int')){
 			case 1:
