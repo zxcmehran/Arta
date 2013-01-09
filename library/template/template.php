@@ -174,9 +174,9 @@ class ArtaTemplate {
 		$this->lang=trans('_LANG_NAME');
 		$this->lang_id=trans('_LANG_ID');
                 
-                $config = ArtaLoader::Config();
-                $this->keywords = $config->keywords;
-                $this->description = $config->description;
+		$config = ArtaLoader::Config();
+		$this->keywords = $config->keywords;
+		$this->description = $config->description;
 		
 		// load HTML because we need it always...
 		$this->includeViewtype();
@@ -243,6 +243,7 @@ class ArtaTemplate {
 		if(getVar('tmpltest', null)!==null && $this->type=='html'){
 			$con=$this->content;
 			preg_match_all('#<artatmpl type=\"(\w*)\" */?>#', $con, $i );
+			$this->addtoTmpl('<input type="button" value="Remove location labels" style="position:fixed; top:20px; left:20px;" onclick="if(this.value==\'Remove location labels\'){$$(\'.tmpltest_handler\').each(function(e){e.style.display=\'none\';});this.value=\'Add location labels\';}else{$$(\'.tmpltest_handler\').each(function(e){e.style.display=\'block\';});this.value=\'Remove location labels\';} "/>', 'package');
 			foreach($i[1] as $v){
 				if(!in_array($v, array('package', 'head', 'afterbody', 'beforebodyend'))){
 					$this->addtoTmpl('<div style="display:block;position:absolute;z-index:1002;background:#dddddd; opacity: .50; filter: alpha(opacity=50); -moz-opactiy: .50; color:red;font-weight:bold;border:1px dashed orange;" class="tmpltest_handler">'.$v.'</div>', $v);
