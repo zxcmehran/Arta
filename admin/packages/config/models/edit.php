@@ -80,7 +80,7 @@ class ConfigModelEdit extends ArtaPackageModel{
 			$data=array_merge($data,$data2);
 		}
 		if(@count($data)==false){
-			ArtaError::show();
+			//ArtaError::show();
 		}
 		return $data;
 	}

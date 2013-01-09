@@ -38,11 +38,16 @@ class ConfigViewEdit extends ArtaPackageView{
 			$client='site';
 		}
 		
+		$data=$model->getSettings($id, $type, $client);
+		
+		if(count($data)==0){
+			echo '<h3 align="center" style="line-height:350px;">'.trans('NO SETTINGS AVAILABLE').'</h3>';
+			return;
+		}
+		
 		ArtaAdminButtons::addSave();
 		ArtaAdminButtons::addReset();
 		ArtaAdminButtons::addCancel($tmpl=='package'?false:'index.php?pack=config&view=extension&extype='.$type);
-		
-		$data=$model->getSettings($id, $type, $client);
 		
 		$language=ArtaLoader::Language();
 		// but we need language of Admin CP
