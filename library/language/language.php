@@ -5,8 +5,8 @@
  * @author		Mehran Ahadi
  * @package		Arta
  * @version		$Revision: 2 2012/12/06 18:14 +3.5 GMT $
- * @link		http://www.artaproject.com	Author's homepage
- * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
+ * @link		http://artaproject.com	Author's homepage
+ * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
  */
  

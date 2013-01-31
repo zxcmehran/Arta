@@ -6,8 +6,8 @@
  * @package		Arta
  * @subpackage	ArtaTemplate
  * @version		$Revision: 2 2012/12/06 18:50 +3.5 GMT $
- * @link		http://www.artaproject.com	Author's homepage
- * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
+ * @link		http://artaproject.com	Author's homepage
+ * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
  */
 if(!defined('ARTA_VALID')){die('No access');}

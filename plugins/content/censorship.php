@@ -5,7 +5,7 @@
  * @author	Mehran Ahadi
  * @package	Arta
  * @version	$Revision: 3 2010/07/21 16:42:40 +3.5 GMT $
- * @link	http://www.artaproject.com	Author's homepage
+ * @link	http://artaproject.com	Author's homepage
  */
  
 //Check arta

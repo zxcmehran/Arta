@@ -105,7 +105,7 @@ class ConfigController extends ArtaPackageController{
 		ArtaLoader::Import('misc->date');
 		$conf="<?php \r\n".
 			"#########################################\r\n".
-			"# Arta is created by Mehran Ahadi www.artaproject.com \r\n".
+			"# Arta is created by Mehran Ahadi artaproject.com \r\n".
 			"# config.php \r\n".
 			"# This file contains settings for Arta ".ArtaVersion::getVersion()." \r\n".
 			"# Last Modified : ".ArtaDate::toMySQL(time())."\r\n".

@@ -5,8 +5,8 @@
  * @author		Mehran Ahadi
  * @package		Arta
  * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
- * @link		http://www.artaproject.com	Author's homepage
- * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
+ * @link		http://artaproject.com	Author's homepage
+ * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
  */
 // ensure that import.php is loaded
@@ -38,10 +38,10 @@ class ArtaVersion{
 	static function getCredits($link = true, $showVersion=false, $showAuthor=true) {				
 		if($link == true) {
 			return 'Arta '.($showVersion?self::getVersion().' ':'').
-				($showAuthor?'by Mehran Ahadi ':'').'(<a href="http://www.artaproject.com/" target="_blank">www.artaproject.com</a>)';
+				($showAuthor?'by Mehran Ahadi ':'').'(<a href="http://artaproject.com/" target="_blank">artaproject.com</a>)';
 		} else {
 			return 'Arta '.($showVersion?self::getVersion().' ':'').
-				($showAuthor?'by Mehran Ahadi ':'').'(www.artaproject.com)';
+				($showAuthor?'by Mehran Ahadi ':'').'(artaproject.com)';
 		}
 	}
 	

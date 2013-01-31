@@ -1,6 +1,6 @@
 <?php 
 #########################################
-# Arta is created by Mehran Ahadi www.artaproject.com 
+# Arta is created by Mehran Ahadi artaproject.com 
 # config.php 
 # This file contains settings for Arta {$version}
 # Last Modified : {$time_formatted}

@@ -5,8 +5,8 @@
  * @author		Mehran Ahadi
  * @package		Arta
  * @version		$Revision: 2 2012/12/06 17:55 +3.5 GMT $
- * @link		http://www.artaproject.com	Author's homepage
- * @copyright	Copyright (C) 2008 - 2011  Mehran Ahadi
+ * @link		http://artaproject.com	Author's homepage
+ * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
  */
  
@@ -52,8 +52,8 @@ class ArtaRequest {
 	
 	/**
 	 * Converts SEF url format to Normal format.
-	 * SEF structure:		www.artaproject.com/index.php/pack/user/view/register/
-	 * SEF structure with rewrite support:		www.artaproject.com/pack/user/view/register/
+	 * SEF structure:		artaproject.com/index.php/pack/user/view/register/
+	 * SEF structure with rewrite support:		artaproject.com/pack/user/view/register/
 	 *
 	 * @static
 	 * @param	string	$sef	 path info in SEF format
@@ -126,8 +126,8 @@ class ArtaRequest {
 	 * Converts SEF2 url format to Normal format.
 	 * Works with sef.php on Package root.
 	 * Note that simple queries (like ?myvar=value&yourvar=TheValue) can be passed on sef.php incompatability.
-	 * SEF2 structure:		www.artaproject.com/index.php/user/register/
-	 * SEF2 structure with rewrite support:		www.artaproject.com/user/register/
+	 * SEF2 structure:		artaproject.com/index.php/user/register/
+	 * SEF2 structure with rewrite support:		artaproject.com/user/register/
 	 *
 	 * @static
 	 * @param	string	$sef2	 path info in SEF2 format

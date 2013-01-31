@@ -21,7 +21,7 @@ div.cphome_msg {
 <tbody>
 <tr>
 	<td class="label" width="27%" style="text-align:<?php echo trans('_LANG_DIRECTION')=='ltr'?'right':'left';?>"><?php echo trans('DESIGNER INTRO') ?> :</td><td class="value" width="23%"><b><?php echo ('M'.'e'.'h'.'r'.'a'.'n '.'A'.'h'.'a'.'d'.'i') ?></b></td>
-	<td class="label" width="25%" style="text-align:<?php echo trans('_LANG_DIRECTION')=='ltr'?'right':'left';?>"><?php echo trans('DESIGNER WEB') ?> :</td><td class="value" width="25%"><b><a href="http://www.artaproject.com/" target="_blank">www.artaproject.com</a></b></td>
+	<td class="label" width="25%" style="text-align:<?php echo trans('_LANG_DIRECTION')=='ltr'?'right':'left';?>"><?php echo trans('DESIGNER WEB') ?> :</td><td class="value" width="25%"><b><a href="http://artaproject.com/" target="_blank">artaproject.com</a></b></td>
 </tr>
 <tr>
 	

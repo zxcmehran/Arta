@@ -22,6 +22,7 @@
 -	Removed footer from admin default template "package" file.
 -	Fixed a problem on filtering language translation items on language package of administration panel.
 -	An important security update for blocking XSS attacks. Tweaked ArtaFilterinput class.
+-	Updated website address and "copyright" tags on file headers.
 </>
 
 <1.0.0rc1>
