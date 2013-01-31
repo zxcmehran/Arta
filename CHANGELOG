@@ -23,7 +23,6 @@
 -	Fixed a problem on filtering language translation items on language package of administration panel.
 -	An important security update for blocking XSS attacks. Tweaked ArtaFilterinput class.
 -	Updated website address and "copyright" tags on file headers.
--	Introduced new header image for site, modified site and admin templates a little.
 </>
 
 <1.0.0rc1>
