@@ -6,7 +6,7 @@ body {
 	min-width: 990px !important;
 	margin: 0;
 	padding: 0;
-	background: #205080 url(images/img01.jpg) repeat-x left top;
+	background: #205080 url(images/img01.png) repeat-x left top;
 	font-family: "Trebuchet MS", Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #444444;
@@ -91,7 +91,7 @@ fieldset{
 #header {
 	text-shadow: 0 0 12px #fff;
 	padding-left: 50px;
-	height: 148px;
+	height: 127px;
 	margin: 0 auto;
 }
 
