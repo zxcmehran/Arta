@@ -249,7 +249,7 @@ function createRow($com,$canedit,$caneditothers,$canpub,$candel,$canacc,$canleav
 				echo '<tr><td colspan="2">'.trans('NOT PUBLISHED').'</td></tr>';
 			}
 			if($candel){
-				echo '<tr><td>'.trans('DELETE').'</td><td><a href="index.php?pack=blog&controller=comments&task=delete&cid='.$com->id.'&token='.ArtaSession::genToken().'&id='.$com->postid.'"><img src="'.Imageset('delete_small.png').'"/></a></td></tr>';
+				echo '<tr><td>'.trans('DELETE').'</td><td><a onclick="if(!confirm(\''.htmlspecialchars(trans('ARE YOU SURE TO DELETE THIS COMMENT')).'\')) return false;" href="index.php?pack=blog&controller=comments&task=delete&cid='.$com->id.'&token='.ArtaSession::genToken().'&id='.$com->postid.'"><img src="'.Imageset('delete_small.png').'"/></a></td></tr>';
 			}
 			echo '</table></span>';
 		}

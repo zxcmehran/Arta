@@ -166,7 +166,7 @@ if(count($comments)){
 		echo '<tr><td>'.trans('PUBLISHED').'</td><td>'.ArtaTagsHtml::BooleanControls($com->published, 'index.php?pack=blog&controller=comments&task=publish&cid='.$com->id, 'index.php?pack=blog&controller=comments&task=unpublish&cid='.$com->id, 'onSuccForCommentPub').'</td></tr>';
 	
 	
-		echo '<tr><td>'.trans('DELETE').'</td><td><a href="index.php?pack=blog&controller=comments&task=delete&cid='.$com->id.'&token='.ArtaSession::genToken().'&id='.$com->postid.'"><img src="'.Imageset('delete_small.png').'"/></a></td></tr>';
+		echo '<tr><td>'.trans('DELETE').'</td><td><a onclick="if(!confirm(\''.htmlspecialchars(trans('ARE YOU SURE TO DELETE THIS COMMENT')).'\')) return false;" href="index.php?pack=blog&controller=comments&task=delete&cid='.$com->id.'&token='.ArtaSession::genToken().'&id='.$com->postid.'"><img src="'.Imageset('delete_small.png').'"/></a></td></tr>';
 	
 		echo '</table></span>';
 		
