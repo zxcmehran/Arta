@@ -156,7 +156,7 @@ class ArtaDate {
 				while(array_key_exists($r,$a)){
 					$r=ArtaString::makeRandStr(6);
 				}
-				$t=str_replace($v, $r, $t);
+				$t=str_replace($v, '['.$r.']', $t);
 				$a[$r]=trans($m.'_month_1_'.strtoupper($v));
 			}
 		}
