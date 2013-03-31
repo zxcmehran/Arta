@@ -163,7 +163,7 @@ class InstallerController{
         if($_POST['db_type']=='mysqli'){
             $db=@ new mysqli($_POST['db_host'],$_POST['db_user'], $_POST['db_pass'], $_POST['db_name']);
             if(mysqli_connect_errno()!=0){
-                printf('<div class="error">'.INVALID_DB_INFO.'</div>', @mysqli_connect_error());
+                printf('<div class="error">'.INVALID_DB_INFO.'</div>', @('<span dir="ltr">'.mysqli_connect_errno().': '.mysqli_connect_error().'</span>'));
                 echo $helper->addBack();
                 return;
             }
@@ -208,8 +208,8 @@ class InstallerController{
         }else{
             $db=@ mysql_connect($_POST['db_host'],$_POST['db_user'], $_POST['db_pass']);
             
-            if(mysql_errno($db)!=0 || @mysql_select_db($_POST['db_name'], $db)==false){
-                printf('<div class="error">'.INVALID_DB_INFO.'</div>', @mysql_error($db));
+            if($db==false || @mysql_select_db($_POST['db_name'], $db)==false){
+                printf('<div class="error">'.INVALID_DB_INFO.'</div>', @('<span dir="ltr">'.mysql_errno().': '.mysql_error().'<span>'));
                 echo $helper->addBack();
                 return;
             }

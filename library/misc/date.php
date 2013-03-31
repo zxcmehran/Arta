@@ -74,7 +74,7 @@ class ArtaDate {
 	}
 	
 	/**
-	 * Converts datetime to HTML5 &lt;time&gt; format
+	 * Converts datetime to HTML5 &lt;time&gt; format (ISO8601)
 	 * ONLY accepts Gregorian Calendar Type Dates
 	 * 
 	 * @static
