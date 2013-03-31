@@ -23,6 +23,7 @@ class UserViewAvatar extends ArtaPackageView{
 				
 				$file=(ARTAPATH_BASEDIR.'/media/avatars'.$big.'/'.$u->avatar);
 			}elseif((string)$u->avatar=='gravatar'){
+				ArtaRequest::cacheByETag(md5($u->avatar), 300);
 				redirect('http://www.gravatar.com/avatar/'.md5($u->email).'.jpg?size='.($big=='/big'?200:100).'&d='.urlencode(ArtaURL::getSiteURL().'media/avatars'.$big.'/unknown.jpg'));
 			}else{
 				$file=(ARTAPATH_BASEDIR.'/media/avatars'.$big.'/'.'unknown.jpg');
@@ -31,10 +32,9 @@ class UserViewAvatar extends ArtaPackageView{
 			$file=(ARTAPATH_BASEDIR.'/media/avatars'.$big.'/'.'unknown.jpg');
 		}
 
-		$mtime=filemtime($file);
-		if($mtime!==false){
-			ArtaRequest::cacheByModifiedDate($mtime);
-		}
+		$md5 = @md5_file($file);
+		if($md5) ArtaRequest::cacheByETag($md5,300);
+			
 		readfile($file);
 	}
 }
