@@ -6,6 +6,7 @@
 -	Confirmation dialog appears before deleting a comment now.
 -	Fixed an issue on date translation method.
 -	Installer now shows connection errors cleaner.
+-	Fixed Browser Caching methods of ArtaRequest class.
 </>
 
 <1.0.0rc2>

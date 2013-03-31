@@ -459,36 +459,40 @@ class ArtaRequest {
 	 * Caches data on user browser and lets it reload when your modified time changed.
 	 * Pass your modified time to decide breaking execution or update browser cache.
 	 * @param	string	$modtime	Timestamp of modification
+	 * @param	int	$max_age	Period of re-checking file by browser, in seconds, set zero to check everytime.
 	 * @static
 	 */
-	static function cacheByModifiedDate($modtime){
+	static function cacheByModifiedDate($modtime, $max_age=300){
+		$max_age = (int)$max_age<0 ? 0 : (int)$max_age;
+		header("Pragma: ");
+		header("Expires: ");
+		header("ETag: ");
+		header("Cache-Control: max-age=".$max_age.", must-revalidate");
+		header("Last-Modified: ".gmdate("D, d M Y H:i:s", $modtime) . ' GMT');
 		if($modtime <= strtotime(@$_SERVER['HTTP_IF_MODIFIED_SINCE'])){
 			header('HTTP/1.1 304 Not Modified');
 			die();
 		}
-		header("Pragma: ");
-		header("Expires: ");
-		header("ETag: ");
-		header("Cache-Control: must-revalidate");
-		header("Last-Modified: ".gmdate("D, d M Y H:i:s", $modtime) . ' GMT');
 	}
 	
 	/**
 	 * Caches data on user browser and lets it reload when your ETag checksum changed.
 	 * Pass your checksum to decide breaking execution or update browser cache.
 	 * @param	string	$etag	Data Checksum
+	 * @param	int	$max_age	Period of re-checking file by browser, in seconds, set zero to check everytime.
 	 * @static
 	 */
-	static function cacheByETag($etag){
-		if(isset($_SERVER['HTTP_IF_NONE_MATCH']) AND $etag != @$_SERVER['HTTP_IF_NONE_MATCH']){
-			header('HTTP/1.1 304 Not Modified');
-			die();
-		}
+	static function cacheByETag($etag, $max_age=300){
+		$max_age = (int)$max_age<0 ? 0 : (int)$max_age;
 		header("Pragma: ");
 		header("Expires: ");
 		header("Last-Modified: ");
-		header("Cache-Control: must-revalidate");
+		header("Cache-Control: max-age=".$max_age.", must-revalidate");
 		header("ETag: ".$etag);
+		if(isset($_SERVER['HTTP_IF_NONE_MATCH']) AND $etag == @$_SERVER['HTTP_IF_NONE_MATCH']){
+			header('HTTP/1.1 304 Not Modified');
+			die();
+		}
 	}
 	
 	
