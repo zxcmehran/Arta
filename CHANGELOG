@@ -8,6 +8,7 @@
 -	Installer now shows connection errors cleaner.
 -	Fixed Browser Caching methods of ArtaRequest class.
 -	Changed avatar caching method from ModifiedDate to Etag.
+-	Caching methods of ArtaRequest class now accept optional Cache-Control directives.
 </>
 
 <1.0.0rc2>

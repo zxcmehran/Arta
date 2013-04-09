@@ -460,14 +460,18 @@ class ArtaRequest {
 	 * Pass your modified time to decide breaking execution or update browser cache.
 	 * @param	string	$modtime	Timestamp of modification
 	 * @param	int	$max_age	Period of re-checking file by browser, in seconds, set zero to check everytime.
+	 * @param	string	$other_controls	Other Cache-Control directives to use. This function uses max-age and must-revalidate by itself.
 	 * @static
 	 */
-	static function cacheByModifiedDate($modtime, $max_age=300){
+	static function cacheByModifiedDate($modtime, $max_age=300, $other_controls=''){
 		$max_age = (int)$max_age<0 ? 0 : (int)$max_age;
+		$other_controls = trim($other_controls);
+		if(strlen($other_controls) > 0 AND $other_controls[0]!=',')
+			$other_controls = ', '.$other_controls;
 		header("Pragma: ");
 		header("Expires: ");
 		header("ETag: ");
-		header("Cache-Control: max-age=".$max_age.", must-revalidate");
+		header("Cache-Control: max-age=".$max_age.", must-revalidate".$other_controls);
 		header("Last-Modified: ".gmdate("D, d M Y H:i:s", $modtime) . ' GMT');
 		if($modtime <= strtotime(@$_SERVER['HTTP_IF_MODIFIED_SINCE'])){
 			header('HTTP/1.1 304 Not Modified');
@@ -480,14 +484,18 @@ class ArtaRequest {
 	 * Pass your checksum to decide breaking execution or update browser cache.
 	 * @param	string	$etag	Data Checksum
 	 * @param	int	$max_age	Period of re-checking file by browser, in seconds, set zero to check everytime.
+	 * @param	string	$other_controls	Other Cache-Control directives to use. This function uses max-age and must-revalidate by itself.
 	 * @static
 	 */
-	static function cacheByETag($etag, $max_age=300){
+	static function cacheByETag($etag, $max_age=300, $other_controls=''){
 		$max_age = (int)$max_age<0 ? 0 : (int)$max_age;
+		$other_controls = trim($other_controls);
+		if(strlen($other_controls) > 0 AND $other_controls[0]!=',')
+			$other_controls = ', '.$other_controls;
 		header("Pragma: ");
 		header("Expires: ");
 		header("Last-Modified: ");
-		header("Cache-Control: max-age=".$max_age.", must-revalidate");
+		header("Cache-Control: max-age=".$max_age.", must-revalidate".$other_controls);
 		header("ETag: ".$etag);
 		if(isset($_SERVER['HTTP_IF_NONE_MATCH']) AND $etag == @$_SERVER['HTTP_IF_NONE_MATCH']){
 			header('HTTP/1.1 304 Not Modified');
