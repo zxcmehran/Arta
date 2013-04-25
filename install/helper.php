@@ -109,11 +109,11 @@ class InstallerHelper{
         if($key){
             $x='<input type="hidden" name="key" value="'.htmlspecialchars($key).'"/>';
         }
-        return '<form><input type="hidden" name="step" value="'.($_step+1).'"/>'.$x.$other_tags.'<input type="submit" value="'.FORM_NEXT.'" align="center"/></form>';
+        return '<form><input type="hidden" name="step" value="'.($_step+1).'"/>'.$x.$other_tags.'<input type="submit" class="btn" value="'.FORM_NEXT.'" align="center"/></form>';
     }
     
     function addBack(){
-        return '<input type="button" name="back" onclick="history.go(-1);" value="'.FORM_BACK.'"/>';
+        return '<input type="button" class="btn" name="back" onclick="history.go(-1);" value="'.FORM_BACK.'"/>';
     }
     
    	function makeRandStr($length=6) {
@@ -141,7 +141,7 @@ class InstallerHelper{
 	
 	function getCalendarOffsetSelectTag($name='v_time_offset'){
 		return '
-<select name="'.htmlspecialchars($name).'" size="1" style="font-size: 10px; width: 100%;">
+<select name="'.htmlspecialchars($name).'" size="1" class="textbox" style="font-size: 10px; width: 100%;">
 <option value="-12">(UTC -12:00) International Date Line West</option>
 <option value="-11">(UTC -11:00) Midway Island, Samoa</option>
 <option value="-10">(UTC -10:00) Hawaii</option>

@@ -27,13 +27,13 @@ $controller= new InstallerController();
 
 if(@$_SESSION['lang']==null && @$_REQUEST['lang']==null){
     $view->toString(0);
-    echo '<form method="post"><select size="5" name="lang" style="width:200px; background: #f1f1f1 url(images/languages.png) no-repeat center;color:black;">';
+    echo '<form method="post"><select class="textbox" size="5" name="lang" style="width:200px; background: #f1f1f1 url(images/languages.png) no-repeat center;color:black;">';
     $langs = (array)$model->getAvailableLangs();
     foreach($langs as $id=>$name){
         echo '<option value="'.htmlspecialchars($id).'">'.htmlspecialchars($name).'</option>';
     }
     echo '</select>';
-    echo '<input type="submit" value="&gt;&gt;&gt;" style="margin:3px;"/>';
+    echo '<input type="submit" class="btn" value="&gt;&gt;&gt;" style="margin:3px; float:right;"/>';
     echo '</form>';
 	
     $view->toString(1);

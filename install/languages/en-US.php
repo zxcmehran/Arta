@@ -20,8 +20,8 @@ define('STEP_INFO_I', 'Getting some other informations');
 define('STEP_FINISH_I', 'Everything is going to be done!');
 
 define('WELCOME_MSG', <<<HTML
-<p>Welcome to Arta Installation Wizard. The wizard will help you to install a copy of Arta v%s on this Host.</p>
-<p>Please do not use "Back" button of your browser during installation wizard.</p>
+<p>Welcome to Arta Installation Wizard. The wizard will help you to install a copy of <b>Arta v%s</b> on this Host.</p>
+<p>Please <b>do not</b> use "Back" button of your browser during installation wizard.</p>
 HTML
 );
 define('ARTA_IS_UNDER_GPL', <<<HTML

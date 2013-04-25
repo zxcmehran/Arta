@@ -124,19 +124,19 @@ class InstallerController{
         echo '<form method="post" action="index.php">';
         
         echo SET_DB_HOST;
-        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_HOST.':</td><td><input name="db_host" value="localhost"/></td></tr></table><hr/>';
+        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_HOST.':</td><td><input class="textbox" name="db_host" value="localhost"/></td></tr></table><hr/>';
                 
         echo SET_DB_NAME;
-        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_NAME.':</td><td><input name="db_name" value=""/></td></tr></table><hr/>';
+        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_NAME.':</td><td><input class="textbox" name="db_name" value=""/></td></tr></table><hr/>';
         
         echo SET_DB_CREDENTIALS;
-        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_USER.':</td><td><input name="db_user" value=""/></td></tr><tr><td style="width:40%;">'.DB_PASS.':</td><td><input name="db_pass" type="password" value=""/> *</td></tr></table><hr/>';
+        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_USER.':</td><td><input class="textbox" name="db_user" value=""/></td></tr><tr><td style="width:40%;">'.DB_PASS.':</td><td><input class="textbox" name="db_pass" type="password" value=""/> *</td></tr></table><hr/>';
         
         echo SET_DB_PREFIX;
-        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_PREFIX.':</td><td><input name="db_prefix" value="arta_"/></td></tr></table><hr/>';
+        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_PREFIX.':</td><td><input class="textbox" name="db_prefix" value="arta_"/></td></tr></table><hr/>';
         
         echo SET_DB_TYPE;
-        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_TYPE.':</td><td><select name="db_type">';
+        echo '<table style="width:95%;"><tr><td style="width:40%;">'.DB_TYPE.':</td><td><select class="textbox" name="db_type">';
         if(extension_loaded('mysqli')){
             echo '<option value="mysqli" selected="true">MySQLi</option>';
         }
@@ -146,7 +146,7 @@ class InstallerController{
             echo '<option value="mysql">MySQL</option>';
         }
         echo '</select></td></tr></table><br/>';
-        echo '<br/><input type="hidden" name="step" value="'.($_step).'"/><input type="submit" value="'.FORM_VERIFY.'" align="center"/>';
+        echo '<br/><input type="hidden" name="step" value="'.($_step).'"/><input type="submit" class="btn" value="'.FORM_VERIFY.'" align="center"/>';
                 
         echo '</form>';
     }
@@ -313,31 +313,31 @@ class InstallerController{
         
         echo SET_WEBSITE_TITLE;
         echo '<table style="width:95%;">
-<tr><td style="width:40%;">'.L_SITENAME.':</td><td><input name="v_sitename" value="Arta"/></td></tr>
-<tr><td style="width:40%;">'.L_HOMEPAGE_TITLE.':</td><td><input name="v_homepage_title" value="Welcome to Arta! The Web Revolution..." style="width:100%"/></td></tr>
-<tr><td style="width:40%;">'.L_DESCRIPTION.':</td><td><textarea style="width:100%; height:80px;" name="v_description">The most flexible content management system is here to to power this website. This website is powered by Arta Content Management Framework.</textarea></td></tr>
-<tr><td style="width:40%;">'.L_KEYWORDS.':</td><td><textarea style="width:100%" name="v_keywords">Arta, CMS, flexible, powerful, secure</textarea></td></tr>
+<tr><td style="width:40%;">'.L_SITENAME.':</td><td><input class="textbox" name="v_sitename" value="Arta"/></td></tr>
+<tr><td style="width:40%;">'.L_HOMEPAGE_TITLE.':</td><td><input class="textbox" name="v_homepage_title" value="Welcome to Arta! The Web Revolution..." style="width:100%"/></td></tr>
+<tr><td style="width:40%;">'.L_DESCRIPTION.':</td><td><textarea class="textbox" style="width:100%; height:80px;" name="v_description">The most flexible content management system is here to to power this website. This website is powered by Arta Content Management Framework.</textarea></td></tr>
+<tr><td style="width:40%;">'.L_KEYWORDS.':</td><td><textarea class="textbox" style="width:100%" name="v_keywords">Arta, CMS, flexible, powerful, secure</textarea></td></tr>
 </table><hr/>';
 
         echo SET_USER_CREDENTIALS;
         echo '<table style="width:95%;">
-<tr><td style="width:40%;">'.L_USERNAME.':</td><td><input name="v_username" value="admin"/></td></tr>
-<tr><td style="width:40%;">'.L_PASSWORD.':</td><td><input name="v_password" type="password"/></td></tr>
-<tr><td style="width:40%;">'.L_PASSWORD_VERIFY.':</td><td><input name="v_password_verify" type="password"/></td></tr>
-<tr><td style="width:40%;">'.L_EMAIL.':</td><td><input name="v_email"/></td></tr>
+<tr><td style="width:40%;">'.L_USERNAME.':</td><td><input class="textbox" name="v_username" value="admin"/></td></tr>
+<tr><td style="width:40%;">'.L_PASSWORD.':</td><td><input class="textbox" name="v_password" type="password"/></td></tr>
+<tr><td style="width:40%;">'.L_PASSWORD_VERIFY.':</td><td><input class="textbox" name="v_password_verify" type="password"/></td></tr>
+<tr><td style="width:40%;">'.L_EMAIL.':</td><td><input class="textbox" name="v_email"/></td></tr>
 </table><hr/>';
 
         echo SET_CALENDAR;
         echo '<table style="width:95%;">
 <tr><td style="width:40%;">'.L_TIME_OFFSET.':</td><td>'.$helper->getCalendarOffsetSelectTag().'</td></tr>
 <tr><td style="width:40%;">'.L_CAL_TYPE.':</td><td>
-<select name="v_cal_type">
+<select name="v_cal_type" class="textbox">
 	<option value="gregorian" selected="selected">'.CAL_GRE.'</option>		
 	<option value="jalali">'.CAL_JAL.'</option>		
 </select>
 </td></tr>
 </table><hr/>';
-		echo '<iframe src="rewrite_test/test_rewriting_method" width="50" height="50" align="'.(LANG_DIR=='ltr'?'right':'left').'" style=" border: 1px solid white;overflow:hidden; background:white;"></iframe>';
+		echo '<iframe src="rewrite_test/test_rewriting_method" width="42" height="38" align="'.(LANG_DIR=='ltr'?'right':'left').'" style="margin:10px; border: 1px solid white;overflow:hidden; background:white; border-radius: 3px;"></iframe>';
 		echo SET_SEF;
         echo '<table style="width:95%;">
 <tr><td style="width:40%;">'.L_URL_FRIENDLY.'</td><td>
@@ -346,7 +346,7 @@ class InstallerController{
 </td></tr>
 </table><hr/>';
         
-        echo '<br/><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="verify" value="true"/><input type="submit" value="'.FORM_VERIFY.'" align="center"/>';
+        echo '<br/><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="verify" value="true"/><input type="submit" class="btn" value="'.FORM_VERIFY.'" align="center"/>';
                 
         echo '</form>';
     }
@@ -395,7 +395,7 @@ class InstallerController{
     	
     	$_SESSION['CREATE']=true;
     	
-    	echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="2"/><input type="submit" value="'.FORM_NEXT.'" align="center"/>';
+    	echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="2"/><input type="submit" class="btn" value="'.FORM_NEXT.'" align="center"/>';
                 
         echo '</form>';
     }
@@ -440,7 +440,7 @@ class InstallerController{
     	
     	echo '</code>';
     	
-    	echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="3"/><input type="submit" value="'.FORM_NEXT.'" align="center"/>';
+    	echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="3"/><input type="submit" class="btn" value="'.FORM_NEXT.'" align="center"/>';
                 
         echo '</form>';
     }
@@ -505,10 +505,10 @@ class InstallerController{
 			echo '<div class="succ">'.CONFIG_WRITE_SUCC.'</div>';
 		}else{
 			echo '<div class="error">'.CONFIG_WRITE_ERROR.'</div>';
-			echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="3"/><input type="submit" value="'.FORM_RETRY.'" align="center"/></form>';
+			echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="3"/><input type="submit" class="btn" value="'.FORM_RETRY.'" align="center"/></form>';
 		}
 		
-    	echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="4"/><input type="submit" value="'.FORM_NEXT.'" align="center"/></form>';    
+    	echo '<br/><form><input type="hidden" name="step" value="'.($_step).'"/><input type="hidden" name="process" value="4"/><input type="submit" class="btn" value="'.FORM_NEXT.'" align="center"/></form>';    
     }
     
     function _level64(){

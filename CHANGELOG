@@ -9,6 +9,7 @@
 -	Fixed Browser Caching methods of ArtaRequest class.
 -	Changed avatar caching method from ModifiedDate to Etag.
 -	Caching methods of ArtaRequest class now accept optional Cache-Control directives.
+-	Revised System Installer style.
 </>
 
 <1.0.0rc2>
