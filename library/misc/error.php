@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 2 2012/12/06 18:47 +3.5 GMT $
+ * @version		$Revision: 3 2013/07/05 14:00 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -123,10 +123,17 @@ _HTML;
 		
 		echo '</div></div><br/><br/>';
 		echo '</body></html>';
-		ob_start();
-		debug_print_backtrace();
-		$GLOBALS['BT']=ob_get_contents();
-		ob_end_clean();
+		
+		$debug = ArtaLoader::Debug();
+		if($debug->enabled){
+			$r ="<b>Backtrace:</b><p class=\"debug_backtrace\">\n";
+			ob_start();
+			debug_print_backtrace();
+			$r .=nl2br(ob_get_contents());
+			ob_end_clean();
+			$r .="\n</p>";
+			$debug->addColumn($r, true);
+		}
 		
 		
 		

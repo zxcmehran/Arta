@@ -210,14 +210,6 @@ function _loadEssentials() {
 	 * Anything in HTML header
 	 */
 	$GLOBALS['_HEAD'] = array();
-
-
-	if(!isset($GLOBALS['DEBUG'])){
-		/**
-		 * Debuggy data to be used by ArtaDebug.
-		 */
-		$GLOBALS['DEBUG'] = array();
-	}
 	
 	if(!isset($GLOBALS['CACHE'])){
 		/**

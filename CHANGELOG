@@ -11,6 +11,7 @@
 -	Caching methods of ArtaRequest class now accept optional Cache-Control directives.
 -	Revised System Installer style.
 -	Language files were amended to use another word to translate "Database" term.
+-	Revised Debugging engine (ArtaDebug class)
 </>
 
 <1.0.0rc2>

@@ -5,7 +5,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/07/05 17:20 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -112,7 +112,32 @@ class ArtaDB {
 	 * @var	array
 	 */
 	var $cache_cleaning = array();
+	
+	/**
+	 * Contains all the SQLs have executed.
+	 * 
+	 * @var	array
+	 * @access	private
+	 */
+	private $SQLs = array();
 
+	/**
+	 * Used as Package processing start flag in debug output.
+	 */
+	const PACKAGE_START_FLAG = '**** Package Processing started. ****';
+	
+	/**
+	 * Used as Package processing finish flag in debug output.
+	 */
+	const PACKAGE_FINISH_FLAG = '**** Package Processing finished. ****';
+	
+	/**
+	 * Contstructor
+	 */
+	function __construct() {
+		register_shutdown_function(array($this, '_debug'));
+	}
+	
 	/**
 	 * Set query string
 	 * Validates SQL for prevent injections then Replaces prefix then Sets $this->SQL and then adds SQL to debug array for {@link	ArtaDebug}
@@ -130,9 +155,9 @@ class ArtaDB {
 		$this->noclean=$noclean;
 		
 		$this->SQL=$this->replacePrefix($what);
-		$config=ArtaLoader::Config();
-		if($config->debug == true){
-			$GLOBALS['DEBUG']['SQL'][]=$this->SQL;
+		$debug = ArtaLoader::Debug();
+		if($debug->enabled){
+			$this->SQLs[] = $this->SQL;
 		}
 	}
 
@@ -490,6 +515,66 @@ class ArtaDB {
 
 		return $result;
 	}
+	
+	/**
+	 * Used to set a flag in debug output to indicate that the package getting processed right now or not.
+	 * 
+	 * @param	bool	$started	true on package processing start and false on finish.
+	 */
+	function setInPackageFlag($started){
+		if($started)
+			$this->SQLs[] = self::PACKAGE_START_FLAG;
+		else
+			$this->SQLs[] = self::PACKAGE_FINISH_FLAG;
+	}
+	
+	/**
+	 * Adds a block to debug output about executed SQLs.
+	 */
+	function _debug(){
+		$debug = ArtaLoader::Debug();
+		if(!$debug->enabled) return;
+		
+		$c = count((array)$this->SQLs)-2;
+		$c = $c < 0 ? 0 : $c;
+		$res = <<<_HTML_
+<style>
+	.debug_queries li{
+		color:#555;
+		border-bottom: 1px solid #ddd;
+		padding: 2px;
+	}
+	.debug_queries li.debug_query_package {
+		color: black;
+		background: #f5f5f5;
+	}
+		
+	.debug_queries div {
+		font-weight: bold;
+	}
+</style>
+_HTML_;
+		$res .= "\n<b>Executed queries (".($c)."): </b>\n";
+		$res .='<ol class="debug_queries">';
+		$className = '';
+		foreach($this->SQLs as $v){
+			if($v==self::PACKAGE_START_FLAG) {
+				$className = 'debug_query_package';
+				$res .= '<div>'.$v.'</div>';
+				continue;
+			}elseif($v==self::PACKAGE_FINISH_FLAG){
+				$className = '';
+				$res .= '<div>'.$v.'</div>';
+				continue;
+			}
+			
+			$res .='<li'.($className?' class="'.$className.'"':'').'>'.nl2br(htmlspecialchars($v)).'</li>';
+		}
+		$res .='</ol>';
+		$this->SQLs = array();
+		$debug->addColumn($res, true);
+	}
+	
 
 }
 

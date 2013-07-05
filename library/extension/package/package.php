@@ -5,7 +5,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/07/05 19:21 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -192,7 +192,8 @@ class ArtaPackage extends ArtaPackageController{
 		$debug=ArtaLoader::Debug();
 		$debug->report('Package Processing Started.', 'ArtaPackage::process', true);
 		if($this->in_process==false){
-			$GLOBALS['DEBUG']['SQL'][]='**** Package Processing started. ****';
+			$db = ArtaLoader::DB();
+			$db->setInPackageFlag(true);
 			ob_start();
 			$this->in_process=true;
 			$this->includeFile(ARTAPATH_CLIENTDIR.'/packages/'.$req.'/'.$req.'.php');
@@ -215,7 +216,8 @@ class ArtaPackage extends ArtaPackageController{
 		if($this->in_process==true){
 			$this->content = ob_get_contents();
 			@ob_end_clean();
-			$GLOBALS['DEBUG']['SQL'][]='**** Package Processing finished. ****';
+			$db = ArtaLoader::DB();
+			$db->setInPackageFlag(false);
 			$debug=ArtaLoader::Debug();
 			$debug->report('Package Processing Finished.', 'ArtaPackage::addResult', true);
 			$this->in_process=false;

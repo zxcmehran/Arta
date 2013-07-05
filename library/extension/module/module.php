@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/07/05 19:51 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -199,23 +199,35 @@ class ArtaModule{
 			$plugin = ArtaLoader::Plugin();
 			$plugin->trigger('onBeforeShowModules', array(&$this->prepared));
 		
-			$d='';
-			$c=0;
+			// some debuggy stuff
+			if($debug->enabled){
+				$d='';
+				$c=0;
+				foreach($this->prepared as $k => $v){
+					if(in_array($k, $i[1])){
+						$d .="&nbsp;&nbsp;<b>".htmlspecialchars($k)."</b> : <ol>";
+						foreach($v as $v2){
+							$c++;
+							$d .= "\n<li>".htmlspecialchars($v2->title).' ('.htmlspecialchars($v2->module).")</li>";
+						}
+						if(count($v)==0) $d .='<div class="debug_list_nothing">&lt;Nothing!&gt;</div>';
+						$d .='</ol>';
+					}else{
+						$d .="<br/>\n&nbsp;&nbsp;<b>".htmlspecialchars($k)."</b> skipped. ";
+					}
+				}	
+
+				$debug->addColumn('<b>Loaded Modules ('.$c.')</b> : <br/>'.$d);
+				unset($c);
+				unset($d);
+			}
+			
+			// Show modules
 			foreach($this->prepared as $k => $v){
 				if(in_array($k, $i[1])){
-					$d .="<br>\n".htmlspecialchars($k)." : ";
-					foreach($v as $k2=>$v2){
-						$c++;
-						$d .= "<br>\n".($k2+1).'. '.htmlspecialchars($v2->title).' ('.htmlspecialchars($v2->module).")";
-					}
-					if(count($v)==0){$d .='&lt;nothing!&gt;';}
 					$this->show($k, $v);
-				}else{
-					$d .="<br>\n".htmlspecialchars($k)." skipped. ";
 				}
-			}	
-			
-			$debug->addColumn('Loaded Modules ('.$c.') : '.$d);
+			}
 			
 			$plugin->trigger('onAfterShowModules', array(&$this->prepared, &$this->content));
 		}else{

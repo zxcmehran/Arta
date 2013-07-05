@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 2 2012/12/06 18:14 +3.5 GMT $
+ * @version		$Revision: 3 2013/07/05 18:57 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -36,14 +36,6 @@ class ArtaLanguage {
 	var $phrases = array();
 	
 	/**
-	 * List of processed language files
-	 * 
-	 * @var	array
-	 * @access	private
-	 */	
-	private $processed=array();
-	
-	/**
 	 * Language Files extension.
 	 * 
 	 * @var	string
@@ -52,11 +44,28 @@ class ArtaLanguage {
 	private $ext = '.ini';
 	
 	/**
+	 * List of processed language files
+	 * 
+	 * @var	array
+	 * @access	private
+	 */	
+	private $processed = array();
+	
+	/**
+	 * List of missing language files that class tried to load
+	 * 
+	 * @var	array
+	 * @access	private
+	 */	
+	private $missing = array();
+	
+	/**
 	 * Phrases that not translated
 	 * 
 	 * @var	array
+	 * @access	private
 	 */	
-	var $untransed = array();
+	private $untransed = array();
 
 	/**
 	 * Constructor. Just puts a debug message.
@@ -101,6 +110,7 @@ class ArtaLanguage {
 			die('Language file not found. Use "index.php?language=an_available_language". By default "en-US" is available.');
 		}
 	
+		register_shutdown_function(array($this, '_debug'));
 		$this->addtoNeed();	
 	}
 
@@ -164,12 +174,13 @@ class ArtaLanguage {
 	 * @return	string
 	 */
 	function addtoNeed($name=false, $type=false, $basedir=ARTAPATH_CLIENTDIR, $lang=false){
-		if(!$lang){$lang=$this->getPreferred();}
-		if($this->checkNeed($name, $type, $basedir, $lang)){
+		if(!$lang) $lang=$this->getPreferred();
+		if($this->checkExistence($name, $type, $basedir, $lang)){
 			$this->parse($name, $type, $basedir, $lang);
 		}else{
-			$name = $this->generateName($lang, $name, $type);
-			$GLOBALS['DEBUG']['_LANGUAGE'][] = $name;
+			$lname = $this->generateName($lang, $name, $type);
+			if(!in_array($basedir.'/languages/'.$name.'/'.$lname, $this->untransed))
+				$this->missing[] = $basedir.'/languages/'.$name.'/'.$lname;
 		}
 	}
 	
@@ -182,7 +193,7 @@ class ArtaLanguage {
 	 * @param	string	$lang	language name
 	 * @return	bool
 	 */
-	function checkNeed($name=false, $type=false, $basedir, $lang){
+	function checkExistence($name=false, $type=false, $basedir, $lang){
 		$name = $this->generateName($lang, $name, $type);
 		if(is_file($basedir.'/languages/'.$lang.'/'.$name)){
 			return true;
@@ -207,7 +218,7 @@ class ArtaLanguage {
 		if(!$type && !$name && !$lang){
 			$p = false;
 		}
-		return $p;
+		return ArtaFilterinput::safeAddress($p);
 	}
 
 	/**
@@ -223,8 +234,6 @@ class ArtaLanguage {
 		if(in_array($basedir.'/languages/'.$lang.'/'.$name, $this->processed)){
 			return;
 		}else{
-			$GLOBALS['DEBUG']['LANGUAGE'][] = $name;
-			$name = ArtaFilterinput::safeAddress($name);
 			$this->processed[]=$basedir.'/languages/'.$lang.'/'.$name;
 			$content = ArtaFile::read($basedir.'/languages/'.$lang.'/'.$name);
 			if($content===false) return false;
@@ -278,8 +287,8 @@ class ArtaLanguage {
 		if(isset($this->phrases[$vu])){
 			return $this->phrases[$vu];
 		}else{
-			if(!@in_array($vu,$GLOBALS['DEBUG']['UNTRANSED'])){
-				$GLOBALS['DEBUG']['UNTRANSED'][] = $vu;
+			if(!@in_array($vu,$this->untransed)){
+				$this->untransed[] = $vu;
 			}
 			return $vu;
 		}
@@ -297,6 +306,41 @@ class ArtaLanguage {
 		}
 		$vu = strtoupper($v);
 		return isset($this->phrases[$vu]);
+	}
+	
+	/**
+	 * Adds some columns to debug output about language files and phrases.
+	 */
+	function _debug(){
+		$debug = ArtaLoader::Debug();
+		if(!$debug->enabled) return;
+		
+		foreach($this->processed as $k=>$v){
+			if(substr(ArtaFile::getDir(ArtaFile::getDir($v)), strlen(ARTAPATH_BASEDIR))==DS.'languages'){
+				$this->processed[$k] = 'site ::'.ArtaFile::getFilename($v);
+			}else{
+				$this->processed[$k] = 'admin::'.ArtaFile::getFilename($v);
+			}
+		}
+		
+		$debug->addList($this->processed, 'Loaded language files','debug_language_loaded');
+		$this->processed = array();
+		
+		foreach($this->missing as $k=>$v){
+			if(substr(ArtaFile::getDir(ArtaFile::getDir($v)), strlen(ARTAPATH_BASEDIR))==DS.'languages'){
+				$this->missing[$k] = 'site ::'.ArtaFile::getFilename($v);
+			}else{
+				$this->missing[$k] = 'admin::'.ArtaFile::getFilename($v);
+			}
+		}
+		
+		$debug->addList($this->missing, 'Missing language files','debug_language_missing');
+		$this->missing = array();
+		
+		$debug->addList($this->untransed, 'Untranslated Phrases', 'debug_language_untransed');
+		$this->untransed = array();
+		
+		
 	}
 	
 }

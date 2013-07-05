@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/07/05 19:32 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -91,16 +91,15 @@ class ArtaCron{
 		}
 		
 		$this->cleanReports();
-		$debug->report(count($this->tasks).' task and '.count($this->todo).' to do.', 'ArtaCron::__construct');
-		$d='';
-		if(count($this->todo) !==0){
+		
+		if($debug->enabled){
+			$debug->report(count($this->tasks).' task and '.count($this->todo).' to do.', 'ArtaCron::__construct');
+			$d = array();
 			foreach($this->todo as $k=>$v){
-				$d .="<br>\n".($k+1).'. '.htmlspecialchars($v->title).' ('.htmlspecialchars($v->cron).")";
+				$d[] = htmlspecialchars($v->title).' ('.htmlspecialchars($v->cron).')';
 			}
-		}else{
-			$d="&lt;nothing!&gt;";
+			$debug->addList($d, 'Executed Crons', 'debug_crons');
 		}
-		$debug->addColumn("Executed crons (".count($this->todo).") : ".$d);
 	}
 
 	/**

@@ -6,7 +6,7 @@
  * @author		Mehran Ahadi
  * @package		Arta
  * @subpackage	ArtaDB
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/07/05 19:19 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -30,6 +30,7 @@ class ArtaDB_mysql extends ArtaDB {
 	 * @param	string	$db	DB name
 	 */
 	function __construct($server, $user, $pass, $db){
+		parent::__construct();
 		if(!$this->test()){
 			die('MySQL is not supported by this server.');
 		}

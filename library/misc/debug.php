@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/07/05 19:59 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -15,7 +15,7 @@ if(!defined('ARTA_VALID')){die('No access');}
 
 /**
  * ArtaDebug class
- * Debugging tools for analyzing Arta
+ * Debugging tools for analyzing Arta execution
  */
 class ArtaDebug {
 	
@@ -37,15 +37,17 @@ class ArtaDebug {
 	 * Reports Array.
 	 * 
 	 * @var	array
+	 * @access	private
 	 */
-	var $reports = array();
+	private $reports = array();
 	
 	/**
 	 * Application Start time in microseconds
 	 * 
 	 * @var	float
+	 * @access	private
 	 */
-	var $start = 0;
+	private $start = 0;
 	
 	/**
 	 * Output Content
@@ -58,18 +60,20 @@ class ArtaDebug {
 	 * Used to calculate delta as first value.
 	 * 
 	 * @var	float
+	 * @access	private
 	 */
-	var $t1=0;
+	private $t1=0;
 	
 	/**
 	 * Used to calculate delta as second value.
 	 * 
 	 * @var	float
+	 * @access	private
 	 */
-	var $t2=0;
+	private $t2=0;
 
 	/**
-	 * Constructor. Sets class vars.
+	 * Constructor.
 	 */
 	function __construct(){
 		ArtaLoader::Import('misc->date');
@@ -78,7 +82,7 @@ class ArtaDebug {
 		$this->enabled=$config->debug;
 		$this->mode=$config->debug_mode;
 		$this->report('Debugging engine loaded.', 'ArtaDebug::__construct');
-					register_shutdown_function(array($this, 'out'));
+					register_shutdown_function(array($this, 'out'), false);
 	}
 
 	/**
@@ -87,150 +91,128 @@ class ArtaDebug {
 	 * @param	string	$what	Report body
 	 * @param	string	$where	Function or Method name
 	 * @param	bool	$bold	Make this report bold?
+	 * @return	bool	true on success, false on invalid input or disabled mode.
 	 */
 	function report($what, $where, $bold=false){
-		if($what == null || $where == null){
-			return false;
+		if($what != null && $where != null && $this->enabled == true){
+			$this->reports[]= '<li>['.sprintf('%0.3f', $this->getPast()).' past, &Delta;='.sprintf('%0.3f', $this->getDelta()).']'.($bold?'<b>':'').' &lt;'.htmlspecialchars($where).'&gt; : '.htmlspecialchars($what).($bold?'</b>':'').'</li>';
+			return true;
 		}
-		if($this->enabled == true){
-			$this->reports[]= '- ['.$this->getPast().' secs past, &Delta;='.$this->getDelta().']'.($bold?'<b>':'').' &lt;'.htmlspecialchars($where).'&gt; : '.htmlspecialchars($what).($bold?'</b>':'');
-		}
-		
+		return false;		
 	}
 
 	/**
-	 * Adds a Column to Report.
+	 * Adds a Column to output.
 	 * 
 	 * @param	string	$data	Column body
-	 * @return	bool
+	 * @param	bool	$prepend	Set true to add the column at the top of output content.
+	 * @return	bool	true on success, false on invalid input or disabled mode.	
 	 */
-	function addColumn($data){
-		$this->content .="<br/>\n<br/>\n".$data;
-		return true;
+	function addColumn($data, $prepend=false){
+		$data = trim($data);
+		if($this->enabled == true && $data!=null){
+			if($prepend)
+				$this->content = "<br/>\n<br/>\n".$data.$this->content;
+			else
+				$this->content .= "<br/>\n<br/>\n".$data;
+			return true;
+		}
+		return false;
 	}
 
 
 	/**
-	 * Generates output
+	 * Generates the output
 	 * 
-	 * @return	string
+	 * @return	string|bool	False on disabled mode.
 	 */
-	function show($is_echo=false){
+	function show(){
+		if($this->enabled==false) return false;
+		$r = <<<_HTML_
+<style>
+	.debug {
+		direction: ltr;
+		background: #fff;
+		color: #000;
+		padding: 10px;
+		font-family: monospace;
+		font-size: 12px;
+		text-align: left;
+	}
+	.debug_systime {
+		color: green;
+		font-weight: bold;
+	}
+	.debug_reports {
+		list-style: none;
+		padding:0px;
+	}
+	.debug_reports li {
+		padding:1px !important;
+	}
+	.debug_reports li b {
+		color:#304099;
+	}
+	
+	* {
+		line-height: 100% !important;
+	}
+		
+	.debug_memory, .debug_timer, .debug_list_nothing {
+		color: #304099;
+		font-weight:bold;
+	}
+		
+</style>
+_HTML_;
 		error_reporting(0);
-		//first
-		$r = '<div style="direction:ltr;background:#ffffff;padding-left:10px;">Begin Debug output : <br/>System Time: '.date('Y-m-d H:i:s', time())."<br/>\n";
 		
 		$c=ArtaLoader::Config();
-		if($c->offline==false && $c->debug==true && $c->debug_mode=='echo' && $is_echo==true){
-			echo '<div style="color:red;font-weight:bold;">WARNING: Debug system is On and your website isn\'t offline so it will show some secret information about your website to unauthorized people and your website\'s security will be in danger. It\'s recommended to choose one of the following to do: <br/>1.Turn off Debug System.<br/>2.Make your website offline.<br/>3.Change settings to put debug data in file; however, remote people can read log files.</div>';
+		if($c->offline==false && $this->mode=='echo'){
+			echo '<div style="color:red;font-weight:bold;">WARNING: Debug system is On and your website is not in Offline Mode. Thus, some secret informations about your website may be leaked and this might put your website\'s security in danger. You should consider doing one of the following: <br/>1. Turn off Debug System<br/>2. Make your website offline<br/>3. Change settings to put debug data in file; However, remote people can still read log files unless you restrict public access to <i>tmp/logs/</i> directory.</div>';
 		}
+		unset($c);
+		
+		//first
+		$r .= '<div class="debug"><b>Begin Debug output:</b> <br/>System Time: <span class="debug_systime">'.date('Y-m-d H:i:s', time())."</span>\n";
 		
 		// get reports
+		$r .= '<ul class="debug_reports">';
 		foreach($this->reports as $k => $v){
-			$r .= $v . '<br/>'."\n";
+			$r .= $v."\n";
 			unset($this->reports[$k]);
 		}
-		//get executed queries
-		$res='<table>';
-		$i=0;
-		$color='#cccccc';
-		$color2='#555555';
-		$color3='#ffffff';
-		foreach((array)$GLOBALS['DEBUG']['SQL'] as $v){
-			if($v=='**** Package Processing started. ****'){
-				$color3='#eeeeee';
-				$color2='black';
-				$color='#cccccc';
-			}
-			if(substr($v, 0, 4)=='****'){
-				$res .= '<tr><td colspan="2"><b>'.htmlspecialchars($v).'</b></td></tr>'."\n\n";
-			}else{
-				$i++;
-				$res .= '<tr><td>'.$i.'. </td><td style="padding-left:5px;border-bottom:1px solid '.$color.';color:'.$color2.';background:'.$color3.';">'.nl2br(htmlspecialchars($v)).'</td></tr>'."\n\n";
-			}
-			if($v=='**** Package Processing finished. ****'){
-				$color3='#ffffff';
-				$color2='#555555';
-				$color='#cccccc';
-			}
-		}
-		$res = "\n".'<br/>Executed queries ('.($i).') : <br/>'."\n".$res;
-		$res.='</table>';
-
-		$r .=$res;
-		if(isset($GLOBALS['BT'])){
-		$r .="\n<br/><b>Backtrace:</b><p>";
-		$bt=$GLOBALS['BT'];
-
-		$r.=nl2br($bt);
-		$r .="\n</p>";
-		}
+		$r .='</ul>';
 		
-		$res = '<br/>';
-		if(!isset($GLOBALS['DEBUG']['LANGUAGE'])){
-		$GLOBALS['DEBUG']['LANGUAGE'] = array();
-		}
-		foreach($GLOBALS['DEBUG']['LANGUAGE'] as $v){
-			$res .=htmlspecialchars($v)."<br>\n";
-		}
-		$r .= "\n<br/>Loaded language files (".count($GLOBALS['DEBUG']['LANGUAGE']).") : ".$res;
-
-		$res = '<br/>';
-		if(!isset($GLOBALS['DEBUG']['_LANGUAGE'])){
-		$GLOBALS['DEBUG']['_LANGUAGE'] = array();
-		}
-		foreach($GLOBALS['DEBUG']['_LANGUAGE'] as $v){
-			$res .=htmlspecialchars($v)."<br>\n";
-		}
-		$r .= "\n<br/>Missing language files (".count($GLOBALS['DEBUG']['_LANGUAGE']).") : ".$res;
-
-		//get Untranslated phrases
-		$res = '<br/>';
-		if(isset($GLOBALS['DEBUG']['UNTRANSED'])){
-			$dddd=count($GLOBALS['DEBUG']['UNTRANSED']);
-			foreach($GLOBALS['DEBUG']['UNTRANSED'] as $v){
-				$res .= htmlspecialchars($v)."<br/>";
-			}
-		}else{
-			$dddd=0;
-			$res ="&lt;Nothing !&gt;<br/>";
-		}
-		$r .= "<br/>\nUntranslated phrases (".$dddd.") : ".$res."\n\n";
-
-		//get Activated Sessions
-		$s = ArtaSession::getSessions();
-		$res = '<br/>';
-		$i=0;
-		foreach($s as $v){
-			if(session_id() == $v->session_id){
-				$sessid = '<b>'.htmlspecialchars($v->session_id).'</b>';
-			}else{
-				$sessid = htmlspecialchars($v->session_id);
-			}
-			$i++;
-			$res .= $i.'. '.$sessid.' | '.$v->time.' | '.$v->userid."<br/>\n";
-		}
-		$r .= '<br/>Sessions (session_id | time | userid) : '.$res."Sum : ".count($s);
-		$r .=$this->content;
-		$r .= "<br/><br/>\n\nMemory Used during execution : ".sprintf('%0.2f', $this->getMemory() / 1048576 ) . ' MB<br/>'."\n";
-		$r .= 'Time past during execution : '.$this->getPast().' Seconds'."\n";
+		// Contents from external resources
+		$r .= $this->content;
+		
+		$r .= "<br/><br/>\n\nMemory Used during execution : <span class=\"debug_memory\">".sprintf('%0.3f', $this->getMemory() / 1048576 ) . ' MB</span><br/>'."\n";
+		$r .= 'Time past during execution : <span class="debug_timer">'.sprintf('%0.3f', $this->getPast()).' sec</span>'."\n";
 		$r .='</div>';
+		
 		return $r;
 	}
 
 	/**
-	 * Starts output to desired target
+	 * Sends output to desired target defined in {@link	ArtaDebug::$mode}.
+	 * @param	bool	$run	true starts output and false postpones execution to latest shutdown function.
 	 */
-	function out(){
+	function out($run){
+		//postpone it to last position on shutdown functions.
+		//Gives the opportunity to other classes to use shotdown functions for passing reports.
+		if($run==false){ 
+			register_shutdown_function (array($this, 'out'), true);
+			return;
+		}
 		if($this->enabled == true){
 			switch($this->mode){
 			case 'echo':
 			default:
-				echo $this->show(true);
+				echo $this->show();
 			break;
 			case 'file':
-				$filename=ARTAPATH_BASEDIR.'/tmp/logs/debug_'.$this->getMicrotime().'.html';
-				ArtaFile::write($filename, $this->show());
+				ArtaFile::write(ARTAPATH_BASEDIR.'/tmp/logs/debug_'.$this->getMicrotime().'.html', $this->show());
 				ArtaFile::write(ARTAPATH_BASEDIR.'/tmp/logs/index.html', '');
 			break;
 			}
@@ -239,33 +221,12 @@ class ArtaDebug {
 
 	/**
 	 * Gets Application memory usage. 
+	 * 
+	 * @return	int	memory in bytes
 	 */
 	function getMemory(){
-		static $isWin;
-
-		if (function_exists( 'memory_get_usage' )) {
+		if(function_exists( 'memory_get_usage' )){
 			return memory_get_usage();
-		} elseif(function_exists('exec')) {
-			// Determine if a windows server
-			if (is_null( $isWin )) {
-				$isWin = (substr(PHP_OS, 0, 3) == 'WIN');
-			}
-
-			// Initialize variables
-			$output = array();
-			$pid = getmypid();
-
-			if ($isWin) {
-				// Windows workaround
-				@exec( 'tasklist /FI "PID eq ' . $pid . '" /FO LIST', $output );
-				if (!isset($output[5])) {
-					$output[5] = null;
-				}
-				return substr( $output[5], strpos( $output[5], ':' ) + 1 );
-			} else {
-				@exec("ps -o rss -p $pid", $output);
-				return $output[1] *1024;
-			}
 		}else{
 			return 0;
 		}
@@ -273,6 +234,7 @@ class ArtaDebug {
 
 	/**
 	 * Gets Current Microtime
+	 * 
 	 * @return	float
 	 */
 	function getMicrotime(){
@@ -288,34 +250,50 @@ class ArtaDebug {
 	function getPast(){
 		// Get time past from start of Arta
 		$now = $this->getMicrotime();
-		$past = ((float)$now - (float)$this->start);
-		$past = round($past, 4);
-		if($past==0){
-			$past='0.0000';
-		}
-		while(strlen($past)<6){
-			$past.='0';
-		}
-		$this->t2=$past;
+		$past = round($now - $this->start, 3);
+		$this->t2 = $past;
 		return $past;
 	}
 	
 	/**
 	 * Gets elapsed time between last report and now
+	 * Should be called after calling {@link	ArtaDebug::getPast()}.
 	 * 
 	 * @return	float
 	 */
 	function getDelta(){
 		// Get time past from last report
-		$past = round($this->t2 - $this->t1, 4);
-		if($past==0){
-			$past='0.0000';
-		}
-		while(strlen($past)<6){
-			$past.='0';
-		}
-		$this->t1=$this->t2;
+		$past = round($this->t2 - $this->t1, 3);
+		$this->t1 = $this->t2;
 		return $past;
+	}
+	
+	/**
+	 * Creates a list in the output.
+	 * Note: This function only works when the Debugging engine is enabled. Before gathering the list, watch for {@link	ArtaDebug::$enabled} flag to avoid unnecessary work.
+	 * 
+	 * @param	array	$list
+	 * @param	string	$title	List title. "Loaded language files" for instance.
+	 * @param	string	$className	Use descriptive class names. For instance, "debug_language_loaded" can be a good classname on listing loaded language files.
+	 * @param	bool	$ordered	Indicates that the method should create a ordered list or an unordered list (ol or ul).
+	 * @return	bool	true on success, false on disabled mode.
+	 */
+	function addList($list, $title, $className, $ordered=true){
+		if(!$this->enabled) return false;
+		
+		$res = "<b>".htmlspecialchars($title)." (".count($list)."):</b>";
+		$list = (array)$list;
+		if(count($list)){
+			$res .= '<'.($ordered?'ol':'ul').' class="'.$className.'">';
+			foreach($list as $v){
+				$res .='<li>'.htmlspecialchars($v)."</li>\n";
+			}
+			$res .= '</'.($ordered?'ol':'ul').'>';
+		}else{
+			$res .= '<div class="debug_list_nothing">&lt;Nothing!&gt;</div>';
+		}
+		
+		return $this->addColumn($res);
 	}
 
 

@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/07/05 13:54 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -27,7 +27,6 @@ class ArtaSession {
 	 */
 	static function initialize(){
 		$config = ArtaLoader::config();
-		$db = ArtaLoader::DB();
 		//settings
 		ini_set('session.cookie_path', $config->cookie_path);
 		ini_set('session.cookie_domain', $config->cookie_domain);
@@ -60,6 +59,7 @@ class ArtaSession {
 		}
 		
 		register_shutdown_function(array('ArtaSession', 'WriteData'));
+		register_shutdown_function(array('ArtaSession', '_debug'));
 
 		$debug = ArtaLoader::Debug();
 		$debug->report('Session started.', 'ArtaSession::initialize');
@@ -72,7 +72,6 @@ class ArtaSession {
 	 * @return	string
 	 */
 	static function getSessionName(){
-		
 		$config = ArtaLoader::Config();
 		$id= @md5(base64_encode($config->secret.CLIENT.$_SERVER["HTTP_USER_AGENT"].$_SERVER["REMOTE_ADDR"]));
 		while(is_numeric($id{0})){
@@ -130,6 +129,38 @@ class ArtaSession {
 		}else{
 			return false;
 		}
+	}
+	
+	/**
+	 * Adds a block to debug report containing last active sessions
+	 * @static
+	 */
+	static function _debug(){
+		$debug = ArtaLoader::Debug();
+		if(!$debug->enabled) return;
+		
+		//get Activated Sessions
+		$db = ArtaLoader::DB();
+		$db->setQuery('SELECT SQL_CALC_FOUND_ROWS * FROM #__sessions ORDER BY `time` DESC LIMIT 0, 100');
+		$s = $db->loadObjectList();
+		$db->setQuery('SELECT FOUND_ROWS()');
+		$sum = $db->loadResult();
+		
+		$res = '<ol class="debug_sessions">';
+		foreach($s as $v){
+			if(session_id() == $v->session_id){
+				$sessid = '<b>'.htmlspecialchars($v->session_id).'</b>';
+			}else{
+				$sessid = htmlspecialchars($v->session_id);
+			}
+			$res .= '<li>'.$sessid.' | '.$v->time.' | '.$v->client.' | '.($v->userid==null?'<i>NULL</i>':$v->userid)."</li>\n";
+		}
+		$res .= '</ol>';
+		$r = '<br/><b>Sessions</b> (session_id | time | client | userid) : '.$res.($sum>100?'<br/>...<br/>':'')."Sum : ".$sum;
+		unset($res);
+		unset($s);
+		
+		$debug->addColumn($r);
 	}
 
 	
