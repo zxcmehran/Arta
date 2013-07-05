@@ -4,7 +4,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 2 2013/07/05 19:59 +3.5 GMT $
+ * @version		$Revision: 3 2013/07/05 20:19 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -154,7 +154,7 @@ class ArtaDebug {
 		color:#304099;
 	}
 	
-	* {
+	.debug * {
 		line-height: 100% !important;
 	}
 		
