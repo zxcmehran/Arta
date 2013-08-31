@@ -7,7 +7,7 @@
  * 
  * @author		Mehran Ahadi
  * @package		Arta
- * @version		$Revision: 1 2011/08/02 14:20 +3.5 GMT $
+ * @version		$Revision: 2 2013/08/30 00:05 +3.5 GMT $
  * @link		http://artaproject.com	Author's homepage
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
@@ -94,7 +94,17 @@ var ArtaCalendar = Class.create({
 		this.drawHTML();
 		if(this.params.parent == false){
 			pos=Element.cumulativeOffset(this.params.handler);
-			this.container.setStyle({top:(pos[1]+10)+"px", left: (pos[0]+10)+"px", display: 'none'});
+			pos2=Element.cumulativeOffset(this.target);
+			if(pos[1]+this.container.getHeight()>document.viewport.getHeight()){
+				this.container.setStyle({top:(pos[1]-this.container.getHeight()-10)+"px"});
+			}else{
+				this.container.setStyle({top:(pos[1]+10)+"px"});
+			}
+			if(pos2[0]>pos[0]){
+				this.container.setStyle({left: (pos[0]-this.container.getWidth()-10)+"px", display: 'none'});
+			}else{
+				this.container.setStyle({left: (pos[0]+10)+"px", display: 'none'});
+			}
 			if( typeof arguments[0] !== 'number'){
 				new Effect.Appear(this.container, {duration:.3});
 			}else if (arguments[0] == 0){
@@ -183,10 +193,23 @@ var ArtaCalendar = Class.create({
 		
 		if(this.params.type=='jalali'){
 			month_days=ArtaCalendarStore.j_days_in_month;
+			
+			if((date.m==1 && [1,5,9,13,18,22,26,30].indexOf((date.y-1)%33)>0)
+			||(date.m==12 && [1,5,9,13,18,22,26,30].indexOf((date.y)%33)>0)){
+				month_days[11]=30;
+			}else{
+				month_days[11]=29;
+			}
+			
 			week=ArtaCalendarStore.jalali_weekday;
 			month=ArtaCalendarStore.jalali_months[date.m-1];
 		}else{
 			month_days=ArtaCalendarStore.g_days_in_month;
+			if((date.m==2 || date.m==3) && ((date.y)%400==0 || ((date.y)%4==0 && (date.y)%100!=0))){
+				month_days[1]=29;
+			}else{
+				month_days[1]=28;
+			}
 			week=ArtaCalendarStore.gregorian_weekday;
 			month=ArtaCalendarStore.gregorian_months[date.m-1];
 		}

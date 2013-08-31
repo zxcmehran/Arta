@@ -12,6 +12,8 @@
 -	Revised System Installer style.
 -	Language files were amended to use another word to translate "Database" term.
 -	Revised Debugging engine (ArtaDebug class)
+-	Fixed ArtaCalendarJS to handle Leap/Kabise years.
+-	ArtaCalendarJS pop-up now takes the best location based on page elements.
 </>
 
 <1.0.0rc2>
