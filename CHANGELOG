@@ -14,6 +14,7 @@
 -	Revised Debugging engine (ArtaDebug class)
 -	Fixed ArtaCalendarJS to handle Leap/Kabise years.
 -	ArtaCalendarJS pop-up now takes the best location based on page elements.
+-	Revised ArtaRG class
 </>
 
 <1.0.0rc2>
