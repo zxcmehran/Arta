@@ -28,9 +28,9 @@ define('DS', DIRECTORY_SEPARATOR);
  * Path to Arta root directory
  */
 define('ARTAPATH_BASEDIR',
-		strlen(ARTAPATH_CLIENTDIRNAME) > 0 ? 
-			substr(ARTAPATH_CLIENTDIR, 0, strlen(ARTAPATH_CLIENTDIR) - strlen(ARTAPATH_CLIENTDIRNAME) - 1) : 
-			ARTAPATH_CLIENTDIR);
+		strlen(ARTAPATH_CLIENTDIRNAME) > 0 ?
+				substr(ARTAPATH_CLIENTDIR, 0, strlen(ARTAPATH_CLIENTDIR) - strlen(ARTAPATH_CLIENTDIRNAME) - 1) :
+				ARTAPATH_CLIENTDIR);
 
 /**
  * ==ARTAPATH_BASEDIR
@@ -126,8 +126,7 @@ function _loadEssentials(){
 	/**
 	 * Arta Use agent to be used in network transactions.
 	 */
-	define('ARTA_USERAGENT',
-			'Arta/'.ArtaVersion::getVersion().' (PHP/'.phpversion().')');
+	define('ARTA_USERAGENT', 'Arta/'.ArtaVersion::getVersion().' (PHP/'.phpversion().')');
 	ini_set('user_agent', ARTA_USERAGENT);
 
 	// load some vars via ...
