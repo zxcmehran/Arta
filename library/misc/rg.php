@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Register Globals and Magic Quotes Handler
  * 

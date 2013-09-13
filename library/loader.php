@@ -41,18 +41,21 @@ class  ArtaLoader {
 	
 	/**
 	 * Contains list of library dir files.
+	 * 
 	 * @staticvar
 	 */
 	private static $files = null;
 	
 	/**
 	 * Contains index of external library classes
+	 * 
 	 * @staticvar
 	 */
 	private static $external_libraries = null;
 	
 	/**
-	 * Find's php file of a class in library.
+	 * Finds php file of a class in library.
+	 * 
 	 * @param	string	$class	Class name to find it's file.
 	 * @return	mixed	string of file address (imploded by ->) or false on failure.
 	 */
@@ -81,12 +84,11 @@ class  ArtaLoader {
 			return $class;
 		}
 		
-		
 		if(self::$files==null){
 			self::$files = (array)ArtaFile::listDir(ARTAPATH_LIBRARY);
 		}
-		$dir = self::$files;
-		foreach($dir as $k => $v) {
+		
+		foreach(self::$files as $v) {
 			if(is_file(ARTAPATH_LIBRARY.'/'.$v.'/'.$class.'.php')) {
 				return $v.'->'.$class;
 			}
@@ -96,11 +98,13 @@ class  ArtaLoader {
 	
 	/**
 	 * Finds php file of an external class in library using lib.ini file.
+	 * 
 	 * @param	string	$class	Class name to find it's file.
 	 * @return	mixed	string of file address (imploded by ->) or false on failure.
 	 */
 	static function findExternalLibrary($class){
 		if(self::$external_libraries==null){
+			ArtaLoader::Import('misc->string');
 			self::$external_libraries = @(array)ArtaString::parseINI(ARTAPATH_LIBRARY.'/external/lib.ini', '#', true);
 		}
 		return @self::$external_libraries[$class]?'external->'.self::$external_libraries[$class]:false;
@@ -109,6 +113,7 @@ class  ArtaLoader {
 	/**
 	 * Script Importer
 	 * Includes files. NOTE: if you want to require add '#' sign at first of $file. e.g. '#file->file'
+	 * 
 	 * @static
 	 * @param	string	$file	path to file. use '->' instead of directory separator.
 	 * @param	string	$from	base path to start exploring. Valid values: library, base, client, package, module 
@@ -198,11 +203,12 @@ class  ArtaLoader {
 				"', '".$config->db_user."', '".$config->db_pass."', '".$config->db_name."');";
 			eval($creator);
 			$artamain->DB->setPrefix($config->db_prefix);
-			$artamain->DB->setQuery('SHOW TABLE STATUS LIKE \'#__packages\'');
+			
+			/*$artamain->DB->setQuery('SHOW TABLE STATUS LIKE \'#__packages\'');
 			$tbl= $artamain->DB->loadObject();
 			if(@strtolower($tbl->Engine)!=='myisam'){
 				ArtaError::show(500, 'Invalid database tables. All tables should be available and use MyISAM storage engine.');
-			}
+			}*/
 	      
 			return $artamain->DB;
 		}

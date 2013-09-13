@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Import files needed by application
+ * Prepares application by importing essentials.
  * 
  * @author		Mehran Ahadi
  * @package		Arta
@@ -27,8 +26,7 @@ define('DS', DIRECTORY_SEPARATOR);
 /**
  * Path to Arta root directory
  */
-define('ARTAPATH_BASEDIR',
-		strlen(ARTAPATH_CLIENTDIRNAME) > 0 ?
+define('ARTAPATH_BASEDIR', strlen(ARTAPATH_CLIENTDIRNAME) > 0 ?
 				substr(ARTAPATH_CLIENTDIR, 0, strlen(ARTAPATH_CLIENTDIR) - strlen(ARTAPATH_CLIENTDIRNAME) - 1) :
 				ARTAPATH_CLIENTDIR);
 
