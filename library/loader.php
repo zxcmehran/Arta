@@ -9,9 +9,7 @@
  * @copyright	Copyright (C) 2008 - 2013  Mehran Ahadi
  * @license		GNU General Public License version 3 or later; see COPYING file.
  */
-
-
-if(!defined('ARTA_VALID')) {
+if(!defined('ARTA_VALID')){
 	die('No access');
 }
 
@@ -19,15 +17,14 @@ if(!defined('ARTA_VALID')) {
  * PHP5 Autoload function
  * This function will try include a class file on calling that when not included.
  */
-
-function __autoload($class) {
+function __autoload($class){
 	$lib = ArtaLoader::findLibrary($class);
-	if($lib!=false){
+	if($lib != false){
 		$debug = ArtaLoader::Debug();
 		$debug->report('Tried to include library file containing "'.$class.'" class using __autoload() function. It\'s recommended to include file manually.', '__autoload()');
 		ArtaLoader::Import($lib);
 	}
-    
+
 	return;
 }
 
@@ -37,22 +34,22 @@ function __autoload($class) {
  * 
  * @static
  */
-class  ArtaLoader {
-	
+class ArtaLoader {
+
 	/**
 	 * Contains list of library dir files.
 	 * 
 	 * @staticvar
 	 */
 	private static $files = null;
-	
+
 	/**
 	 * Contains index of external library classes
 	 * 
 	 * @staticvar
 	 */
 	private static $external_libraries = null;
-	
+
 	/**
 	 * Finds php file of a class in library.
 	 * 
@@ -65,37 +62,37 @@ class  ArtaLoader {
 		}
 		$class = strtolower(substr($class, 4));
 		switch($class){
-	        case 'err':
-	            $class='error';
-	            break;
-	        case 'filterinput':
-	            $class='input';
-	            break;
-	        case 'filteroutput':
-	            $class='output';
-	        break;
-	        case 'str':
-	            $class='string';
-	        break;
-	    }
-	    
+			case 'err':
+				$class = 'error';
+				break;
+			case 'filterinput':
+				$class = 'input';
+				break;
+			case 'filteroutput':
+				$class = 'output';
+				break;
+			case 'str':
+				$class = 'string';
+				break;
+		}
+
 		ArtaLoader::Import('file->file');
 		if(is_file(ARTAPATH_LIBRARY.'/'.$class.'.php')){
 			return $class;
 		}
-		
-		if(self::$files==null){
+
+		if(self::$files == null){
 			self::$files = (array)ArtaFile::listDir(ARTAPATH_LIBRARY);
 		}
-		
-		foreach(self::$files as $v) {
-			if(is_file(ARTAPATH_LIBRARY.'/'.$v.'/'.$class.'.php')) {
+
+		foreach(self::$files as $v){
+			if(is_file(ARTAPATH_LIBRARY.'/'.$v.'/'.$class.'.php')){
 				return $v.'->'.$class;
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Finds php file of an external class in library using lib.ini file.
 	 * 
@@ -103,11 +100,11 @@ class  ArtaLoader {
 	 * @return	mixed	string of file address (imploded by ->) or false on failure.
 	 */
 	static function findExternalLibrary($class){
-		if(self::$external_libraries==null){
+		if(self::$external_libraries == null){
 			ArtaLoader::Import('misc->string');
 			self::$external_libraries = @(array)ArtaString::parseINI(ARTAPATH_LIBRARY.'/external/lib.ini', '#', true);
 		}
-		return @self::$external_libraries[$class]?'external->'.self::$external_libraries[$class]:false;
+		return @self::$external_libraries[$class] ? 'external->'.self::$external_libraries[$class] : false;
 	}
 
 	/**
@@ -119,20 +116,20 @@ class  ArtaLoader {
 	 * @param	string	$from	base path to start exploring. Valid values: library, base, client, package, module 
 	 * @return	bool
 	 */
-	static function Import($file, $from = "library") {
+	static function Import($file, $from = "library"){
 
-		if((string)$file==''){
+		if((string)$file == ''){
 			return false;
 		}
-		if($file{0} == "#") {
+		if($file{0} == "#"){
 			$die = true;
 			$file = substr($file, 1);
-		} else {
+		}else{
 			$die = false;
 		}
-		
+
 		$file = str_replace('->', '/', $file);
-		switch($from) {
+		switch($from){
 			case 'library':
 			default:
 				$pre = ARTAPATH_LIBRARY;
@@ -147,25 +144,25 @@ class  ArtaLoader {
 				$pre = ARTAPATH_PACKDIR;
 				break;
 			case 'module':
-				$m=self::Module();
+				$m = self::Module();
 				$pre = ARTAPATH_CLIENTDIR.'/modules/'.ArtaFilterinput::safeAddress($m->name);
 				unset($m);
 				break;
 			case 'media':
-				$c=ArtaLoader::Config();
+				$c = ArtaLoader::Config();
 				unset($c);
 				$pre = ARTAPATH_MEDIA;
 				break;
 		}
-		$_=$pre.'/'.$file.'.php';
+		$_ = $pre.'/'.$file.'.php';
 		unset($pre);
 		unset($file);
 		unset($from);
-		if(!file_exists($_)) {
+		if(!file_exists($_)){
 			if(class_exists('ArtaError') && class_exists('ArtaDebug')){
 				$debug = ArtaLoader::Debug();
 				$die ? ArtaError::show(500, 'File "'.$_.'" not exists.') :
-				$debug->report('"'.$_.'" Not found.', 'ArtaLoader::Import()');
+								$debug->report('"'.$_.'" Not found.', 'ArtaLoader::Import()');
 			}else{
 				if($die){
 					die('File "'.$_.'" not exists.');
@@ -174,7 +171,7 @@ class  ArtaLoader {
 				}
 			}
 			return false;
-		} else {
+		}else{
 			unset($die);
 			require_once($_);
 			return true;
@@ -187,12 +184,12 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function DB() {
+	static function DB(){
 		global $artamain;
-		if(isset($artamain->DB)) {
-			$artamain->DB->die=false;
+		if(isset($artamain->DB)){
+			$artamain->DB->die = false;
 			return $artamain->DB;
-		} else {
+		}else{
 			$config = ArtaLoader::Config();
 			ArtaLoader::Import('db->db');
 			if(!in_array($config->db_type, array('mysql', 'mysqli'))){
@@ -200,16 +197,16 @@ class  ArtaLoader {
 			}
 			ArtaLoader::Import('db->type->'.$config->db_type);
 			$creator = '$artamain->DB = new ArtaDB_'.$config->db_type."('".$config->db_host.
-				"', '".$config->db_user."', '".$config->db_pass."', '".$config->db_name."');";
+					"', '".$config->db_user."', '".$config->db_pass."', '".$config->db_name."');";
 			eval($creator);
 			$artamain->DB->setPrefix($config->db_prefix);
-			
-			/*$artamain->DB->setQuery('SHOW TABLE STATUS LIKE \'#__packages\'');
-			$tbl= $artamain->DB->loadObject();
-			if(@strtolower($tbl->Engine)!=='myisam'){
-				ArtaError::show(500, 'Invalid database tables. All tables should be available and use MyISAM storage engine.');
-			}*/
-	      
+
+			/* $artamain->DB->setQuery('SHOW TABLE STATUS LIKE \'#__packages\'');
+			  $tbl= $artamain->DB->loadObject();
+			  if(@strtolower($tbl->Engine)!=='myisam'){
+			  ArtaError::show(500, 'Invalid database tables. All tables should be available and use MyISAM storage engine.');
+			  } */
+
 			return $artamain->DB;
 		}
 	}
@@ -218,7 +215,7 @@ class  ArtaLoader {
 	 * Import Package related files
 	 * @static
 	 */
-	static function PackageFiles() {
+	static function PackageFiles(){
 		ArtaLoader::Import('#extension->package->controller');
 		ArtaLoader::Import('#extension->package->view');
 		ArtaLoader::Import('#extension->package->model');
@@ -226,14 +223,13 @@ class  ArtaLoader {
 		if(file_exists(ARTAPATH_PACKDIR.'/controller.php')){
 			ArtaLoader::Import('controller', 'package');
 		}
-
 	}
-	
+
 	/**
 	 * Import Module related files
 	 * @static
 	 */
-	static function ModuleFiles() {
+	static function ModuleFiles(){
 		ArtaLoader::Import('#extension->module->model');
 		ArtaLoader::Import('#extension->module->helper');
 	}
@@ -244,10 +240,9 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object	application instance
 	 */
-	static function Application() {
+	static function Application(){
 		ArtaLoader::Import('#application');
-        ArtaApplication::start();
-        
+		ArtaApplication::start();
 	}
 
 	/**
@@ -256,11 +251,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Package() {
+	static function Package(){
 		global $artamain;
-		if(isset($artamain->package)) {
+		if(isset($artamain->package)){
 			return $artamain->package;
-		} else {
+		}else{
 			ArtaLoader::Import('#extension->package->package');
 			$artamain->package = new ArtaPackage;
 			return $artamain->package;
@@ -273,11 +268,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function User() {
+	static function User(){
 		global $artamain;
-		if(isset($artamain->user)) {
+		if(isset($artamain->user)){
 			return $artamain->user;
-		} else {
+		}else{
 			ArtaLoader::Import('#user->user');
 			$artamain->user = new ArtaUser;
 			return $artamain->user;
@@ -290,11 +285,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Pathway() {
+	static function Pathway(){
 		global $artamain;
-		if(isset($artamain->pathway)) {
+		if(isset($artamain->pathway)){
 			return $artamain->pathway;
-		} else {
+		}else{
 			ArtaLoader::Import('#misc->pathway');
 			$artamain->pathway = new ArtaPathway;
 			return $artamain->pathway;
@@ -307,11 +302,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Plugin() {
+	static function Plugin(){
 		global $artamain;
-		if(isset($artamain->plugin)) {
+		if(isset($artamain->plugin)){
 			return $artamain->plugin;
-		} else {
+		}else{
 			ArtaLoader::Import('#extension->plugin->plugin');
 			$artamain->plugin = new ArtaPlugin;
 			return $artamain->plugin;
@@ -324,11 +319,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Debug() {
+	static function Debug(){
 		global $artamain;
-		if(isset($artamain->debug)) {
+		if(isset($artamain->debug)){
 			return $artamain->debug;
-		} else {
+		}else{
 			ArtaLoader::Import('#misc->debug');
 			$artamain->debug = new ArtaDebug;
 			return $artamain->debug;
@@ -341,11 +336,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Mail() {
+	static function Mail(){
 		global $artamain;
-		if(isset($artamain->mail)) {
+		if(isset($artamain->mail)){
 			return $artamain->mail;
-		} else {
+		}else{
 			ArtaLoader::Import('#mail->mail');
 			$artamain->mail = new ArtaMail;
 			return $artamain->mail;
@@ -358,11 +353,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Module() {
+	static function Module(){
 		global $artamain;
-		if(isset($artamain->module)) {
+		if(isset($artamain->module)){
 			return $artamain->module;
-		} else {
+		}else{
 			ArtaLoader::Import('#extension->module->module');
 			$artamain->module = new ArtaModule;
 			return $artamain->module;
@@ -375,11 +370,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Cron() {
+	static function Cron(){
 		global $artamain;
-		if(isset($artamain->cron)) {
+		if(isset($artamain->cron)){
 			return $artamain->cron;
-		} else {
+		}else{
 			ArtaLoader::Import('#extension->cron->cron');
 			$artamain->cron = new ArtaCron;
 			return $artamain->cron;
@@ -392,14 +387,14 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Config() {
+	static function Config(){
 		global $artamain;
 		if(!is_object($artamain)){
-			$artamain=new stdClass;
+			$artamain = new stdClass;
 		}
-		if(isset($artamain->config)) {
+		if(isset($artamain->config)){
 			return $artamain->config;
-		} else {
+		}else{
 			ArtaLoader::Import('#config', 'base');
 			$artamain->config = new ArtaConfig;
 			return $artamain->config;
@@ -412,11 +407,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Language() {
+	static function Language(){
 		global $artamain;
-		if(isset($artamain->lang)) {
+		if(isset($artamain->lang)){
 			return $artamain->lang;
-		} else {
+		}else{
 			ArtaLoader::Import('#language->language');
 			$artamain->lang = new ArtaLanguage;
 			return $artamain->lang;
@@ -429,11 +424,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function Template() {
+	static function Template(){
 		global $artamain;
-		if(isset($artamain->template)) {
+		if(isset($artamain->template)){
 			return $artamain->template;
-		} else {
+		}else{
 			ArtaLoader::Import('#template->template');
 			$artamain->template = new ArtaTemplate;
 			return $artamain->template;
@@ -446,11 +441,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function FTP() {
+	static function FTP(){
 		global $artamain;
-		if(isset($artamain->ftp)) {
+		if(isset($artamain->ftp)){
 			return $artamain->ftp;
-		} else {
+		}else{
 			ArtaLoader::Import('#file->ftp->ftp');
 			$artamain->ftp = new ArtaFTP();
 			return $artamain->ftp;
@@ -463,34 +458,34 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function PDF() {
+	static function PDF(){
 		global $artamain;
-		if(isset($artamain->pdf)) {
+		if(isset($artamain->pdf)){
 			return $artamain->pdf;
-		} else {
+		}else{
 			ArtaLoader::Import('#pdf->pdf');
 			$artamain->pdf = new ArtaPDF();
 			return $artamain->pdf;
 		}
 	}
-	
+
 	/**
 	 * Import ArtaDomain
 	 *
 	 * @static
 	 * @return	object
 	 */
-	static function Domain() {
+	static function Domain(){
 		global $artamain;
-		if(isset($artamain->domain)) {
+		if(isset($artamain->domain)){
 			return $artamain->domain;
-		} else {
+		}else{
 			ArtaLoader::Import('#http->domain');
 			$artamain->domain = new ArtaDomain();
 			return $artamain->domain;
 		}
 	}
-		
+
 	/**
 	 * Import OEmbed Processor class
 	 *
@@ -499,14 +494,13 @@ class  ArtaLoader {
 	 */
 	static function OEmbed(){
 		global $artamain;
-		if(isset($artamain->oembed)) {
+		if(isset($artamain->oembed)){
 			return $artamain->oembed;
-		} else {
+		}else{
 			ArtaLoader::Import('#misc->oembed');
 			$artamain->oembed = new ArtaOEmbed();
 			return $artamain->oembed;
 		}
-		
 	}
 
 	/**
@@ -515,11 +509,11 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function XMLRPC() {
+	static function XMLRPC(){
 		global $artamain;
-		if(isset($artamain->xmlrpc)) {
+		if(isset($artamain->xmlrpc)){
 			return $artamain->xmlrpc;
-		} else {
+		}else{
 			ArtaLoader::Import('#xmlrpc->xmlrpc');
 			$artamain->xmlrpc = new ArtaXMLRPC();
 			return $artamain->xmlrpc;
@@ -532,17 +526,17 @@ class  ArtaLoader {
 	 * @static
 	 * @return	object
 	 */
-	static function WebService() {
+	static function WebService(){
 		global $artamain;
-		if(isset($artamain->websrv)) {
+		if(isset($artamain->websrv)){
 			return $artamain->websrv;
-		} else {
+		}else{
 			ArtaLoader::Import('#extension->webservice->webservice');
 			$artamain->websrv = new ArtaWebService();
 			return $artamain->websrv;
 		}
 	}
-	
+
 }
 
 //out of classes
@@ -554,7 +548,7 @@ class  ArtaLoader {
  * @param	string	$msgType	tip, warning or error
  * @param	bool	$make	make url
  */
-function redirect($url, $msg = '', $msgType = 'tip') {
+function redirect($url, $msg = '', $msgType = 'tip'){
 	ArtaApplication::redirect($url, $msg, $msgType);
 }
 
@@ -564,7 +558,7 @@ function redirect($url, $msg = '', $msgType = 'tip') {
  * @param	string	$msg	message of redirection
  * @param	string	$msgType	tip, warning or error
  */
-function enqueueMessage($msg, $msgType = 'tip') {
+function enqueueMessage($msg, $msgType = 'tip'){
 	ArtaApplication::enqueueMessage($msg, $msgType);
 }
 
@@ -574,7 +568,7 @@ function enqueueMessage($msg, $msgType = 'tip') {
  * @param	string	$var	 phrase to translate
  * @return	string	translated
  */
-function trans($var) {
+function trans($var){
 	$lang = ArtaLoader::Language();
 	return $lang->translate($var);
 }
@@ -588,7 +582,7 @@ function trans($var) {
  * @param	string	$type	value type to clean var
  * @return	mixed	var value
  */
-function getVar($name, $default = null, $hash = 'default', $type='default') {
+function getVar($name, $default = null, $hash = 'default', $type = 'default'){
 	return ArtaRequest::getVar($name, $default, $hash, $type);
 }
 
@@ -611,6 +605,5 @@ function makeURL($url){
 function Imageset($url){
 	return ArtaURL::Imageset($url);
 }
-
 
 ?>
