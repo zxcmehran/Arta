@@ -1,0 +1,11 @@
+syntax: glob
+admin/tmp/**
+tmp/**
+admin/packages/cphome/data/data.php
+install/tmp/**
+nbproject/**
+.idea/**
+
+
+syntax: re
+^config\.php$
