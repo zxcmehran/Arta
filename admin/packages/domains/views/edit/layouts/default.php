@@ -142,7 +142,7 @@ function updatePreview(){
             <td class="value">
 				<div id="preview" style="height: 40px; font-size: 125%;color:#205080; width:99%; font-family: monospace; overflow: auto; border: 1px solid gray; padding: 2px; background: #FFFFFF;"><?php echo htmlspecialchars($data->params); ?></div>
 				<input id="preview_value" type="hidden" name="link" value="<?php echo htmlspecialchars($data->params); ?>" /> 
-				<input type="button" onclick="editor=window.open(&quot;index.php?pack=links&view=link_editor&tmpl=package&quot;, &quot;le&quot;,&quot;scrollbars,height=400,width=500&quot;)" value="<?php	echo trans('LINK EDITOR'); ?>" />
+				<input type="button" onclick="editor=window.open('index.php?pack=links&view=link_editor&tmpl=package', 'le','scrollbars,height=400,width=500')" value="<?php	echo trans('LINK EDITOR'); ?>" />
 			</td>
         </tr>
 

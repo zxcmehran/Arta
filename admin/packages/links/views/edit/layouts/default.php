@@ -11,7 +11,7 @@ function setLink(ln){
 }
 function setInner(type){
 	if(type==\'inner\'){
-		cont=\'index.php?<input size="30" type="text" name="link" value="'.htmlspecialchars($data->link).'" /> <input type="button" onclick="editor=window.open(&quot;index.php?pack=links&view=link_editor&tmpl=package&quot;, &quot;le&quot;,&quot;scrollbars,height=400,width=400&quot;)" value="'.trans('LINK EDITOR').'" />\';
+		cont=\'index.php?<input size="30" type="text" name="link" value="'.htmlspecialchars($data->link).'" /> <input type="button" onclick="editor=window.open(\'index.php?pack=links&view=link_editor&tmpl=package\', \'le\',\'scrollbars,height=400,width=400\')" value="'.trans('LINK EDITOR').'" />\';
 	}else{
 		cont=\'<input size="30" type="text" name="link" value="'.htmlspecialchars($data->link).'" />\';
 	}
@@ -64,7 +64,7 @@ if($data->id!=0){
 
             <td class="value" style="direction:ltr;" id="LinkBox">
 				index.php?<input size="30" maxlength="255" type="text" name="link" value="<?php echo htmlspecialchars($data->link); ?>" /> 
-				<input type="button" onclick="editor=window.open(&quot;index.php?pack=links&view=link_editor&tmpl=package&quot;, &quot;le&quot;,&quot;scrollbars,height=400,width=500&quot;)" value="<?php	echo trans('LINK EDITOR'); ?>" />
+				<input type="button" onclick="editor=window.open('index.php?pack=links&view=link_editor&tmpl=package', 'le','scrollbars,height=400,width=500')" value="<?php	echo trans('LINK EDITOR'); ?>" />
 			</td>
 
             <td class="label"><?php echo trans('LINKGROUP'); ?></td>

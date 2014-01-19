@@ -87,7 +87,7 @@ $i=0;
 					echo '</a>';} ?></td></tr>
 			</table>
 		</td>
-		<td align="center"><a href="index.php?pack=blog&view=newcat&ids[]=<?php echo $v->blogid.'">'; echo htmlspecialchars($v->cattitle) ?></a></td>
+		<td align="center"><a href="index.php?pack=blog&view=newcat&ids[]=<?php echo $v->blogid;?>"><?php echo htmlspecialchars($v->cattitle) ?></a></td>
 		<td align="center"><?php $z=$v->unpub_time==trans('never') ? $v->unpub_time : ArtaDate::_($v->unpub_time); echo ArtatagsHtml::Tooltip(ArtaTagsHtml::BooleanControls($v->enabled, 'index.php?pack=blog&task=activate&ids[]='.$v->id, 'index.php?pack=blog&task=deactivate&ids[]='.$v->id), trans('pub_time').': '.ArtaDate::_($v->pub_time).'<br>'.trans('unpub_time').': '.$z) ?></td>
 		<td align="center"><a href="index.php?pack=user&view=new&ids[]=<?php echo $v->added_by;?>"><?php echo htmlspecialchars($v->username)?></a></td>
 	</tr>

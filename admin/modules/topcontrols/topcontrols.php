@@ -15,7 +15,7 @@ $u=$this->getCurrentUser();
 	echo ArtaTagsHtml::Tooltip('<img src="'.imageset('info.png').'"/>', $helper->getInfo(),300);
 ?></td>
 		<td class="topcontrols"><a target="_blank" href="<?php echo ArtaURL::getSiteURL(); ?>"><?php echo trans('preview'); ?></a></td>
-		<td class="topcontrols"><a onclick="window.open(&quot;index.php?pack=blog&view=new&tmpl=package&quot;, &quot;new_post&quot;,&quot;scrollbars,height=500,width=800&quot;);" href="#"><?php echo trans('new post'); ?></a></td>
+		<td class="topcontrols"><a onclick="window.open('index.php?pack=blog&view=new&tmpl=package', 'new_post','scrollbars,height=500,width=800');" href="#"><?php echo trans('new post'); ?></a></td>
 		<td class="topcontrols"><?php echo 'Arta '.ArtaVersion::getVersion(); ?></td>
 		<td class="topcontrols"><a href="index.php?pack=login&task=logout"><img src="<?php
 	echo imageset('false.png');
