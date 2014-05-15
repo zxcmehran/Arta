@@ -1,7 +1,10 @@
+/config.php
+
+/admin/packages/cphome/data/data.php
+
 /admin/tmp/**
 /tmp/**
-/admin/packages/cphome/data/data.php
 /install/tmp/**
+
 /nbproject/**
 /.idea/**
-/config.php
